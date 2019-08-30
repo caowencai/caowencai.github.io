@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>草本喧哗的博客</title>
+  <title>Wencai&#39;s Blog</title>
   
   
   <link href="/atom.xml" rel="self"/>
@@ -10,7 +10,7 @@
   <id>https://caowencai.com/</id>
   
   <author>
-    <name>草本喧哗</name>
+    <name>Cao Wencai</name>
     
   </author>
   
