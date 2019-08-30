@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>草本喧哗的博客</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://caowencai.com/"/>
+  <updated>2019-08-30T00:41:49.749Z</updated>
+  <id>https://caowencai.com/</id>
+  
+  <author>
+    <name>草本喧哗</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>tencent-ad-contest</title>
+    <link href="https://caowencai.com/2019/08/27/tencent-ad-contest/"/>
+    <id>https://caowencai.com/2019/08/27/tencent-ad-contest/</id>
+    <published>2019-08-27T05:39:46.000Z</published>
+    <updated>2019-08-30T00:41:49.749Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;作为从本次比赛共157队伍中脱颖而出的冠军方案，评分达到87.9683，从数据清洗、模型构建、目标优化等有非常多值得学习的地方。比赛团队也挺有意思，分别来自哈工大、微软研究院和京东，算是学术界和工业界的强强联合，在多个数据竞赛中都有不错的名次。&lt;/p&gt;
+&lt;blockquot
+        
+      
+    
+    </summary>
+    
+      <category term="model" scheme="https://caowencai.com/categories/model/"/>
+    
+    
+      <category term="tencent-ad" scheme="https://caowencai.com/tags/tencent-ad/"/>
+    
+      <category term="deepwalk" scheme="https://caowencai.com/tags/deepwalk/"/>
+    
+      <category term="word2vec" scheme="https://caowencai.com/tags/word2vec/"/>
+    
+      <category term="embedding" scheme="https://caowencai.com/tags/embedding/"/>
+    
+  </entry>
+  
+</feed>

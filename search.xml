@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>tencent-ad-contest</title>
+      <link href="/2019/08/27/tencent-ad-contest/"/>
+      <url>/2019/08/27/tencent-ad-contest/</url>
+      
+        <content type="html"><![CDATA[<p>作为从本次比赛共157队伍中脱颖而出的冠军方案，评分达到87.9683，从数据清洗、模型构建、目标优化等有非常多值得学习的地方。比赛团队也挺有意思，分别来自哈工大、微软研究院和京东，算是学术界和工业界的强强联合，在多个数据竞赛中都有不错的名次。</p><blockquote><p>评委：“这是最接近腾讯真实业务的方案。”</p></blockquote><h2>背景介绍</h2><p>作为国内领先的大数据营销平台，全新升级的腾讯广告，以更强大的全景连接、更全链的数字智慧、更友好的人本体验等三大核心能力，构建品牌与用户的智慧连接，助力广告主高效实现商业增长。而复杂的社交场景，多样的广告形态，以及庞大的人群数据，给实现这一目标带来了不小的挑战。为攻克这些挑战，腾讯广告也在不断地寻找更为优秀的数据挖掘方式和机器学习算法。<br>本次算法大赛<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>的题目是源于腾讯广告业务中一个面向广告主服务的真实业务产品 ——广告曝光预估。广告曝光预估的目的是在广告主创建新广告和修改广告设置时，为广告主提供未来的广告曝光效果参考。通过这个预估参考，广告主能避免盲目的优化尝试，有效缩短广告的优化周期，降低试错成本， 使广告效果尽快达到广告主的预期范围。比赛中使用的数据经过脱敏处理，通过本次大赛，我们旨在挑选出更为优秀的曝光预估算法以及遴选出杰出的社交广告算法达人。</p><h2>比赛赛题</h2><ol><li><p>数据<br>主要是三个日志文件，分别为：</p><ul><li>历史日志数据：广告请求时间、用户 id、广告位 id、竞价广告信息等</li><li>用户信息数据：用户 id、年龄、性别、地域、行为兴趣等</li><li>广告设置：广告操作信息、广告静态信息</li></ul></li><li><p>目标<br>本次竞赛提供历史 n 天的曝光广告的数据（特定流量上采样），包括对应每次曝光的流量特征（用户属性和广告位等时空信息）以及曝光广告的设置和竞争力分数；测试集是新的一批广告设置（有完全新的广告id，也有老的广告id修改了设置），要求预估这批广告的日曝光。</p></li><li><p>评价指标<br>评价指标由两部分组成，准确性指标和出价单调性指标。<br>准确性指标<strong>SMAPE</strong>衡量了预测的准确度：<br>$$ \textbf{SMAPE} = \frac{1}{n} \sum_{t=1}^{n}\frac{|F_t - A_t|}{(F_t+A_t)/2}$$<br>单调性指标<strong>MonoScore</strong>衡量了报价与曝光量的相关性，这是对应“由于竞价机制的特性，在广告其他特征不变的前提下，随着出价的提升，预估曝光值也 单调提升才符合业务直觉。”，其中：<br>$$<br>\textbf{MonoScore} = \frac{1}{n} \sum_{k=1}^{n}\frac{(imp_0 - imp_k)(bid_0-bid_k)}{|(imp_0 - imp_k)(bid_0-bid_k)|}<br>$$<br>最终得分是将两个指标加权相加：<br>$$ \textbf{TotalScore} = \omega_1 * (1-\frac{\textbf{SMAPE}}{2}) + \omega_2*\frac{\textbf{MonoScore} + 1}{2}$$</p></li></ol><h2>数据初探</h2><p>这次比赛的数据非常原始，日志信息的<strong>raw data</strong>，因此原始数据是脏数据。那么，建模第一步必须是数据清洗，异常检测，重复缺失值等。第二步，建模，而这里面的数据并没有给定标签，需要统计曝光量。这里面大有学问，出价不同的广告不能视为同一个广告；24小时（0-24点）间隔内未修改的广告视为同一广告，如果有修改，那么修改时间点后的广告视为新的广告。详细的数据集解读可以参考CSDN上的技术博客<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup><sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup>，对所有数据集的详细介绍见下图：</p>   <!-- ![](flowchart.png) -->   <img src="flowchart.png" width="80%" height="80%"><h2>冠军方案</h2><p>作者在github<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup>上公开了源码,该库包含了比赛详细的介绍文件<code>guide.pdf</code>和数据集下载链接（百度网盘），再次感谢作者。下面是亲自跑一遍源码后进行的归纳总结。</p><h3>数据清洗</h3><p>首先在preprocessing.py进行数据前处理，主要是以下几个函数：</p><ul><li>parse_rawdata：<code>曝光日志、静态广告属性、用户信息、测试数据</code>都转化为Dataframe</li><li>construct_log：构造<code>曝光日志</code>，统计每一天各个广告的曝光量，同时将最后一天的数据择选出来</li><li>extract_setting：对<code>广告操作日志</code>进行日期纠正，缺失日期记录则copy填充</li><li>construct_train_data：构造训练集，根据<code>曝光日志</code>统计广告当天平均出价和曝光，通过crowd_direction和delivery_periods两个属性过滤其中未在<code>广告操作日志</code>出项的广告，并剔除出价过高（1000以上）和曝光过高（3000以上）的广告（这两个阈值怎么定的？）</li><li>construct_dev_data：构造验证集，输入为曝光日志中最后一天（[‘request_day’]==17974）的数据，根据<code>广告操作日志</code>剔除未出现操作记录、当天有操作记录和出价不唯一的广告的广告，奇怪的是源码里后面针对补全时间记录的广告操作日志又进行了一次未出现操作记录的过滤，这里有部分过滤重复，但没有错误，最终的dev_df也填补了缺失日期的记录。最后，构造了虚假广告用来测试单调性，这一点。</li><li>最后，对各个数据集merge广告静态特征。总共生成四个数据集：<ul><li>train_dev_df：从广告日志+广告操作文件+广告静态文件提取出的数据集中减去最后一天的数据</li><li>train_df：训练集，从广告日志+广告操作文件+广告静态文件聚合提取出的<strong>最全数据集</strong></li><li>dev_df：验证集，最后一天的广告数据</li><li>test_df：直接读取的test数据<br>这样切分的一个用处是，通过train_dev_df和dev_df进行有监督的模型训练，再通过train_df和test_df进行测试。</li></ul></li></ul><h3>特征提取</h3><p>在extract_feature.py特征提取包括人群定向、投放时段、多值特征的主副键（即两两特征之间的数量统计量，主要是以ID为基础统计，例如f1=aid,f2=uid，k=100,则表示访问该广告最多的前100名用户）、历史统计（例如，最近一天该广告的曝光量，时间越近相关性越大）、聚合统计（例如某商品的不同用户访问次数）、五折统计（shuffle后分为五折计算均值、中位数，不知道这多大用处？）以及uid和good_id等ID特征之间的word2vec和deepwalk embedding特征。</p><h3>格式转换</h3><p>最后在convert_format.py中，分别对训练集和测试集进行了去重、fillna、归一化以及将Word2Vec和DeepWalk得到的embedding拼接起来，并且掩盖到5%的广告。为什么掩盖掉5%的广告，作者给出的解释是为了保证训练集中也能出现无曝光的广告。新广告是没有历史信息的，所以如何构造新广告的特征，对新广告进行历史和整体性的描述成了提分的关键。这种处理主要解决以下两个问题：</p><ol><li>只有在日志中曝光过的广告才会有相应的嵌入向量，通过广告有无嵌入向量，会泄露了无曝光广告的标签；</li><li>测试数据中存在曝光非0但无嵌入向量的广告，这在训练集中是不存在的，导致训练测试不一致。</li></ol><h3>小结</h3><p>初次拿到这个赛题，容易一头雾水。而该团队本身经过多次数据竞赛的丰富经验，在此次竞赛中也凸显出来。如何根据题目要求构建有标签的数据集，如何数据清洗和特征工程，如果规避数据泄露以及数据集构建上有非常多值得借鉴的地方细节上，Dataframe的聚合操作、字典统计</p><h2>模型介绍</h2><p>这里是</p><hr class="footnotes-sep"><section class="footnotes"><ol class="footnotes-list"><li id="fn1" class="footnote-item"><p>2019腾讯广告算法大赛，<a href="https://algo.qq.com/application/home/home/index.html" target="_blank" rel="noopener">https://algo.qq.com/application/home/home/index.html</a> <a href="#fnref1" class="footnote-backref">↩</a></p></li><li id="fn2" class="footnote-item"><p>Guiliano，数据集探索博客：<a href="https://blog.csdn.net/jliang3/article/details/90610865" target="_blank" rel="noopener">https://blog.csdn.net/jliang3/article/details/90610865</a> <a href="#fnref2" class="footnote-backref">↩</a></p></li><li id="fn3" class="footnote-item"><p>鱼遇雨欲语与余，原作者知乎专栏：<a href="https://zhuanlan.zhihu.com/p/69351598" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/69351598</a> <a href="#fnref3" class="footnote-backref">↩</a></p></li><li id="fn4" class="footnote-item"><p><a href="https://github.com/guoday/Tencent2019_Preliminary_Rank1st" target="_blank" rel="noopener">https://github.com/guoday/Tencent2019_Preliminary_Rank1st</a> <a href="#fnref4" class="footnote-backref">↩</a></p></li></ol></section>]]></content>
+      
+      
+      <categories>
+          
+          <category> model </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> tencent-ad </tag>
+            
+            <tag> deepwalk </tag>
+            
+            <tag> word2vec </tag>
+            
+            <tag> embedding </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
