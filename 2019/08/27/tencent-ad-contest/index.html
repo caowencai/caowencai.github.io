@@ -390,16 +390,12 @@
                             <span class="chip tag-bg-color">tencent-ad</span>
                         </a>
                         
-                        <a href="/tags/deepwalk/" target="_blank">
-                            <span class="chip tag-bg-color">deepwalk</span>
-                        </a>
-                        
-                        <a href="/tags/word2vec/" target="_blank">
-                            <span class="chip tag-bg-color">word2vec</span>
-                        </a>
-                        
                         <a href="/tags/embedding/" target="_blank">
                             <span class="chip tag-bg-color">embedding</span>
+                        </a>
+                        
+                        <a href="/tags/recommender-system/" target="_blank">
+                            <span class="chip tag-bg-color">recommender system</span>
                         </a>
                         
                     </div>
@@ -436,14 +432,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>字数:&nbsp;&nbsp;
-                    2.1k
+                    3.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    12 分
                 </div>
                 
                 
@@ -461,7 +457,8 @@
             <div id="articleContent">
                 <p>作为从本次比赛共157队伍中脱颖而出的冠军方案，评分达到87.9683，从数据清洗、模型构建、目标优化等有非常多值得学习的地方。比赛团队也挺有意思，分别来自哈工大、微软研究院和京东，算是学术界和工业界的强强联合，在多个数据竞赛中都有不错的名次。</p>
 <blockquote>
-<p>评委：“这是最接近腾讯真实业务的方案。”</p>
+<p>评委：“这是最接近腾讯真实业务的方案。”<br>
+本文将从源码着手，深度解读该冠军方案是如何一步步从rough data清洗、特征工程到运用多种模型融合实现最佳效果的。</p>
 </blockquote>
 <h2>背景介绍</h2>
 <p>作为国内领先的大数据营销平台，全新升级的腾讯广告，以更强大的全景连接、更全链的数字智慧、更友好的人本体验等三大核心能力，构建品牌与用户的智慧连接，助力广告主高效实现商业增长。而复杂的社交场景，多样的广告形态，以及庞大的人群数据，给实现这一目标带来了不小的挑战。为攻克这些挑战，腾讯广告也在不断地寻找更为优秀的数据挖掘方式和机器学习算法。<br>
@@ -497,7 +494,7 @@ $$ \textbf{TotalScore} = \omega_1 * (1-\frac{\textbf{SMAPE}}{2}) + \omega_2*\fra
 <h2>数据初探</h2>
 <p>这次比赛的数据非常原始，日志信息的<strong>raw data</strong>，因此原始数据是脏数据。那么，建模第一步必须是数据清洗，异常检测，重复缺失值等。第二步，建模，而这里面的数据并没有给定标签，需要统计曝光量。这里面大有学问，出价不同的广告不能视为同一个广告；24小时（0-24点）间隔内未修改的广告视为同一广告，如果有修改，那么修改时间点后的广告视为新的广告。详细的数据集解读可以参考CSDN上的技术博客<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup><sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup>，对所有数据集的详细介绍见下图：</p>
    <!-- ![](flowchart.png) -->
-   <img src="flowchart.png" width="80%" height="80%">
+   <img src="flowchart.png" width="100%" height="100%">
 <h2>冠军方案</h2>
 <p>作者在github<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup>上公开了源码,该库包含了比赛详细的介绍文件<code>guide.pdf</code>和数据集下载链接（百度网盘），再次感谢作者。下面是亲自跑一遍源码后进行的归纳总结。</p>
 <h3>数据清洗</h3>
@@ -527,9 +524,66 @@ $$ \textbf{TotalScore} = \omega_1 * (1-\frac{\textbf{SMAPE}}{2}) + \omega_2*\fra
 <li>测试数据中存在曝光非0但无嵌入向量的广告，这在训练集中是不存在的，导致训练测试不一致。</li>
 </ol>
 <h3>小结</h3>
-<p>初次拿到这个赛题，容易一头雾水。而该团队本身经过多次数据竞赛的丰富经验，在此次竞赛中也凸显出来。如何根据题目要求构建有标签的数据集，如何数据清洗和特征工程，如果规避数据泄露以及数据集构建上有非常多值得借鉴的地方细节上，Dataframe的聚合操作、字典统计。</p>
-<h2>模型介绍</h2>
-<p>这里是</p>
+<p>初次拿到这个赛题，容易一头雾水。而该团队本身经过多次数据竞赛的丰富经验，在此次竞赛中也凸显出来。如何根据题目要求构建有标签的数据集，如何数据清洗和特征工程，如果规避数据泄露以及数据集构建上有非常多值得借鉴的地方，细节上，Dataframe的聚合操作、字典统计、大文件处理时的gc。</p>
+<h2>模型解读</h2>
+<blockquote>
+<p>俞士纶（Philip S. Yu）教授评价说 “冠军队伍已经在有意无意使用‘广度学习’ 的方法”。</p>
+</blockquote>
+<p>该方案采用的模型组合包括CIN（xDeepFM）、Key-Value、Word2Vec和DeepWalk四种模型单元分别提取特征，然后concat输入到MLP中训练，模型框架如下图所示：<br>
+<img src="framework.png" width="100%" height="100%"></p>
+<p>源码中训练的入口为<code>train.py</code>，从该文件代码可知，经过特征工程后提取的特征类型有single_features、cross_features、multi_features、dense_features、kv_features。与此同时，针对不同特征使用不同的子模型进行处理，特征数据类型介绍所示：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特征类型</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">single_features</td>
+<td style="text-align:left">单值特征，年龄、ID、性别等等</td>
+</tr>
+<tr>
+<td style="text-align:left">cross_features</td>
+<td style="text-align:left">交叉特征，与single_features有很大重复</td>
+</tr>
+<tr>
+<td style="text-align:left">multi_features</td>
+<td style="text-align:left">多值特征，各种组合特征，与上面两个特征无重叠</td>
+</tr>
+<tr>
+<td style="text-align:left">dense_features</td>
+<td style="text-align:left">稠密特征，deepwalk、word2vec和投放时段特征</td>
+</tr>
+<tr>
+<td style="text-align:left">kv_features</td>
+<td style="text-align:left">key-values特征，历史、统计特征</td>
+</tr>
+</tbody>
+</table>
+<p>由上可以看出，除了single_features、cross_features有大部分数据重复，其他相互之间没有重叠特征。为何特征重复？可以参考xDeepFM的模型，作用应该是类似增加一个Linear单元。从CIN.py代码看，cross_features和multi_features都会输入到CIN网络（<code>_build_extreme_FM</code>函数）中，然后dnn_input将CIN的输出、single_features的直接嵌入、kv_features以及dense_features以concatenate的方式结合起来输入到后端的MLP中。下面分别介绍各个子网络。</p>
+<h3>压缩交互网络（CIN）</h3>
+<p>要理解CIN网络，首先得理解FM因式分解机模型。FM旨在解决大规模稀疏数据下的特征组合问题，那么大规模稀疏数据是怎么来的呢？举个例子，用户访问某网站的日志数据中，我们可以发现许多特征是类别特征，性别、爱好、地址等等，而在特征处理过程中，通常会对categorical型特征进行one-hot编码，这必然带会导致特征空间稀疏性变大。在数据稀疏性的现实情况下，我们如何去利用这些特征来提升learning performance？<br>
+大量的研究和实际数据分析结果表明：某些特征之间的关联信息（相关度）对事件结果的的发生会产生很大的影响。从实际业务线的广告点击数据分析来看，也证实了这样的结论。而表示特征之间的关联，最直接的方法的是构造组合特征。样本中特征之间的关联信息在one-hot编码和浅层学习模型（如LR、SVM）是做不到的。目前工业界主要有两种手段得到组合特征：</p>
+<ul>
+<li>人工特征工程（数据分析＋人工构造，各种统计merge）；</li>
+<li>通过模型做组合特征的学习（深度学习方法、FM/FFM方法）<br>
+FM本质上是回归模型，不过是从一维延展到了高维，以二维多项式组合为例，其公式如下：<br>
+$$<br>
+y(x) = \omega_0+ \sum_{i=1}<sup>{n}\omega_ix_i+\sum_{i=1}</sup>{n}\sum_{j=i+1}^{n}\omega_{ij}x_ix_j \tag{1}<br>
+$$<br>
+其中，$n$代表样本的特征数量，$x_i$ 是第$i$个特征的值，$\omega_0$、$\omega_i$、$\omega_{ij}$是模型参数。从公式$(1)$可以看出，组合特征的参数一共有 $n(n−1)/2$个，每个参数$\omega_{ij}$的训练需要大量$x_i$和 $x_j$ 都非零的样本。然而，由于样本数据本来就比较稀疏，满足$x_i$和 $x_j$都非零的样本将会非常少。训练样本的不足，很容易导致参数 $\omega_{ij}$ 不准确，最终将严重影响模型的性能。<br>
+那么，如何解决二次项参数的训练问题呢？矩阵分解提供了一种解决思路。关于FM中矩阵分解可以参见《深入FFM原理与实践》<sup class="footnote-ref"><a href="#fn5" id="fnref5">[5]</a></sup>。通过对参数$\omega_{ij}$的矩阵（<strong>对称矩阵</strong>）进行矩阵分解，将$\omega_{ij}$用$&lt;\boldsymbol{v}<em>i,\boldsymbol{v}<em>j&gt;$内积的方式来表达，那么公式$(1)$可以如下表达：<br>
+$$<br>
+y(x) = \omega_0+ \sum</em>{i=1}^{n}\omega_ix_i+ \sum</em>{i=1}<sup>{n}\sum_{j=i+1}</sup>{n}&lt;\boldsymbol{v}_i,\boldsymbol{v}_j&gt;x_ix_j \tag{2}<br>
+$$<br>
+其中，$\boldsymbol{v}<em>i$ 是第 $i$ 维特征的隐向量，而隐向量的长度为 $k（k&lt;&lt;n）$，这样二次项的参数数量减少为 $kn$ 个,远少于多项式模型的参数数量，同时之前样本组合确实造成$\omega</em>{ij}=0$的情况现在可以通过隐向量的方式学习到有效值。当然，这种变换方式也降低了计算复杂度，详细证明可以参见<sup class="footnote-ref"><a href="#fn6" id="fnref6">[6]</a></sup>。</li>
+</ul>
+<h3>模型实现</h3>
+<h4>特征归一化</h4>
+<h4>目标函数优化</h4>
+<h4>模型训练</h4>
 <hr class="footnotes-sep">
 <section class="footnotes">
 <ol class="footnotes-list">
@@ -539,7 +593,11 @@ $$ \textbf{TotalScore} = \omega_1 * (1-\frac{\textbf{SMAPE}}{2}) + \omega_2*\fra
 </li>
 <li id="fn3" class="footnote-item"><p>鱼遇雨欲语与余，原作者知乎专栏：<a href="https://zhuanlan.zhihu.com/p/69351598" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/69351598</a> <a href="#fnref3" class="footnote-backref">↩</a></p>
 </li>
-<li id="fn4" class="footnote-item"><p><a href="https://github.com/guoday/Tencent2019_Preliminary_Rank1st" target="_blank" rel="noopener">https://github.com/guoday/Tencent2019_Preliminary_Rank1st</a> <a href="#fnref4" class="footnote-backref">↩</a></p>
+<li id="fn4" class="footnote-item"><p>大赛冠军源码， <a href="https://github.com/guoday/Tencent2019_Preliminary_Rank1st" target="_blank" rel="noopener">https://github.com/guoday/Tencent2019_Preliminary_Rank1st</a> <a href="#fnref4" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn5" class="footnote-item"><p><a href="https://tech.meituan.com/2016/03/03/deep-understanding-of-ffm-principles-and-practices.html" target="_blank" rel="noopener">https://tech.meituan.com/2016/03/03/deep-understanding-of-ffm-principles-and-practices.html</a> <a href="#fnref5" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn6" class="footnote-item"><p><a href="http://www.algo.uni-konstanz.de/members/rendle/pdf/Rendle2010FM.pdf" target="_blank" rel="noopener">http://www.algo.uni-konstanz.de/members/rendle/pdf/Rendle2010FM.pdf</a> <a href="#fnref6" class="footnote-backref">↩</a></p>
 </li>
 </ol>
 </section>
@@ -685,16 +743,12 @@ $$ \textbf{TotalScore} = \omega_1 * (1-\frac{\textbf{SMAPE}}{2}) + \omega_2*\fra
                         <span class="chip tag-bg-color">tencent-ad</span>
                     </a>
                     
-                    <a href="/tags/deepwalk/" target="_blank">
-                        <span class="chip tag-bg-color">deepwalk</span>
-                    </a>
-                    
-                    <a href="/tags/word2vec/" target="_blank">
-                        <span class="chip tag-bg-color">word2vec</span>
-                    </a>
-                    
                     <a href="/tags/embedding/" target="_blank">
                         <span class="chip tag-bg-color">embedding</span>
+                    </a>
+                    
+                    <a href="/tags/recommender-system/" target="_blank">
+                        <span class="chip tag-bg-color">recommender system</span>
                     </a>
                     
                 </div>
@@ -747,16 +801,12 @@ $$ \textbf{TotalScore} = \omega_1 * (1-\frac{\textbf{SMAPE}}{2}) + \omega_2*\fra
                         <span class="chip tag-bg-color">tencent-ad</span>
                     </a>
                     
-                    <a href="/tags/deepwalk/" target="_blank">
-                        <span class="chip tag-bg-color">deepwalk</span>
-                    </a>
-                    
-                    <a href="/tags/word2vec/" target="_blank">
-                        <span class="chip tag-bg-color">word2vec</span>
-                    </a>
-                    
                     <a href="/tags/embedding/" target="_blank">
                         <span class="chip tag-bg-color">embedding</span>
+                    </a>
+                    
+                    <a href="/tags/recommender-system/" target="_blank">
+                        <span class="chip tag-bg-color">recommender system</span>
                     </a>
                     
                 </div>
@@ -918,7 +968,7 @@ $$ \textbf{TotalScore} = \omega_1 * (1-\frac{\textbf{SMAPE}}{2}) + \omega_2*\fra
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">2.1k</span>
+            <span class="white-color">3.4k</span>
             
 
             <br>
