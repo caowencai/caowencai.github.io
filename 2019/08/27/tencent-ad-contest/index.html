@@ -649,8 +649,10 @@ Key-Value memory的好处在于可以方便的对先验知识进行编码，这�
     kv_emb=tf.reshape(kv_emb,[-1,len(hparams.kv_features)*hparams.k])
     dnn_input.append(kv_emb)
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>该段代码首先通过index将浮点数的区间（0~1）划分为N=20个子区间，每一个代表一个键值进行索引，然后计算每个样本的每个特征值与这20个区间的距离。这里需要注意的是weights已经增加了一个维度，每个kv_features都计算了与21个键值index的距离，然后每一个权重值与kv_emb_v2嵌入式特征矩阵相乘累加，reshape后得对最终的特征矩阵kv_emb，这里面的维度很容易出错。<br>
-这样的话每个kv特征被嵌入式到hparams.k=16的向量空间中，这里不由得产生了一个问题，<strong>key-value与连续值分桶嵌入式的区别是什么，为何模型要采用key-value？</strong></p>
+<p>该段代码首先通过index将浮点数的区间（0~1）划分为N=20个子区间，每一个代表一个键值进行索引，然后计算每个样本的每个特征值与这20个区间的距离。这里需要注意的是weights已经增加了一个维度，每个kv_features都计算了与21个键值index的距离，然后每一个权重值与kv_emb_v2嵌入式特征矩阵相乘累加，reshape后得对最终的特征矩阵kv_emb，这里面的维度很容易出错，最终每个kv特征被嵌入式到hparams.k=16的向量空间中。</p>
+<blockquote>
+<p>这里不由得产生了一个问题，<strong>key-value与连续值分桶嵌入式的区别是什么，为何模型要采用key-value？</strong></p>
+</blockquote>
 <h2>Deepwalk</h2>
 <p>Deepwal源自图理论。</p>
 <hr class="footnotes-sep">
