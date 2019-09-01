@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caowencai.com/"/>
-  <updated>2019-08-30T09:47:40.154Z</updated>
+  <updated>2019-09-01T14:32:06.906Z</updated>
   <id>https://caowencai.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>tencent-ad-contest</title>
+    <title>一文梳理2019年腾讯广告算法大赛冠军方案</title>
     <link href="https://caowencai.com/2019/08/27/tencent-ad-contest/"/>
     <id>https://caowencai.com/2019/08/27/tencent-ad-contest/</id>
     <published>2019-08-27T05:39:46.000Z</published>
-    <updated>2019-08-30T09:47:40.154Z</updated>
+    <updated>2019-09-01T14:32:06.906Z</updated>
     
     <summary type="html">
     
@@ -41,9 +41,9 @@
     
       <category term="tencent-ad" scheme="https://caowencai.com/tags/tencent-ad/"/>
     
-      <category term="embedding" scheme="https://caowencai.com/tags/embedding/"/>
-    
       <category term="recommender system" scheme="https://caowencai.com/tags/recommender-system/"/>
+    
+      <category term="embedding" scheme="https://caowencai.com/tags/embedding/"/>
     
   </entry>
   
