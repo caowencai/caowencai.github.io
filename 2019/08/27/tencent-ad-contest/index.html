@@ -432,14 +432,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>字数:&nbsp;&nbsp;
-                    6.9k
+                    8.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    25 分
+                    29 分
                 </div>
                 
                 
@@ -653,8 +653,20 @@ Key-Value memory的好处在于可以方便的对先验知识进行编码，这�
 <blockquote>
 <p>这里不由得产生了一个问题，<strong>key-value与连续值分桶嵌入式的区别是什么，为何模型要采用key-value？</strong></p>
 </blockquote>
-<h2>Deepwalk</h2>
-<p>Deepwal源自图理论。</p>
+<h3>Word2Vec</h3>
+<p>Word2Vec 是从大量文本语料中以无监督的方式学习语义知识的一种模型，它最初被大量地用在自然语言处理（NLP）中。那么它是如何帮助我们做自然语言处理呢？Word2Vec 其实就是通过学习文本来用词向量的方式表征词的语义信息，即通过一个嵌入空间使得语义上相似的单词在该空间内距离很近。Embedding 其实就是一个映射，将单词从原先所属的空间映射到新的多维空间中，也就是把原先词所在空间嵌入到一个新的空间中去。举个例子，cat 这个单词和 kitten 属于语义上很相近的词，而 dog 和 kitten 则不是那么相近，iphone 这个单词和 kitten 的语义就差的更远了。通过对词汇表中单词进行这种数值表示方式的学习（也就是将单词转换为词向量），能够让我们基于这样的数值进行向量化的运算从而能够表征语义信息。<br>
+Word2Vec 模型中，主要有 Skip-Gram 和 CBOW 两种模型，从直观上理解，Skip-Gram 是给定 input word 来预测上下文。而 CBOW 是给定上下文，来预测 input word。本篇文章仅讲解 Skip-Gram 模型。<br>
+<img src="word2vec.jpg" width="100%" height="100%"><br>
+大部门嵌入式情况下都是使用Skip-Gram模型，其形式非常简单，模型架构如下图所示：<br>
+<img src="skip-gram.png" width="100%" height="100%"><br>
+假设从我们的训练文档中抽取出10000个唯一不重复的单词组成词汇表，对这10000个单词进行one-hot编码，得到的每个单词都是一个10000维的向量，向量每个维度的值只有0或者1。而对模型训练的训练样本是 （input word, output word） 这样的单词对，训练时通过softmax函数将模型输出转化为10000维的向量，与output word 的one-hot编码对应。模型训练完后得到的隐藏层参数矩阵为$W$，它的维度为10000*k（神经元个数，等效于嵌入式的特征空间维数），而由于输入为one-hot编码，隐藏层实现的功能其实类似于一个查找标，每一个向量从矩阵$W$中查找到其在隐空间中的向量表示，于是$W$的每一行就是一个原始变量的嵌入式向量，即原始位点在转换空间后的坐标。这时候大家容易发现一个问题，如果文本中某个词特别多怎么办，例如“the”在文章中出现频次超高，那模型就需要对高频词进行抑制，方法包括对高频次单词进行抽样来减少训练样本的个数、将常见的单词组合（word pairs）或者词组作为单个“words”来处理以及<strong>negative sampling</strong>。<br>
+关于Word2Vec更多朴实近人的介绍参考博客<sup class="footnote-ref"><a href="#fn11" id="fnref11">[11]</a></sup>。</p>
+<h3>Deepwalk</h3>
+<p>Deepwal源自图理论，关于图网络不得不提的是清华大学孙茂松组的图网络综述[^12]，该文总结了近年来图神经网络领域的经典模型与典型应用，对于希望快速了解这一领域的读者，不妨先从这篇文章看起。 而且该文还提到“<strong>DeepWalk、LINE、SDNE 等方法在网络表示学习领域取得了很大的成功，然而，这些方法在计算上较为复杂并且在大规模的图上并不是最优的，GNN旨在解决这些问题。</strong>”也就是说Deepwalk是有一定局限性的模型，当然这并不是文本的重点，本文关心的是Deepwalk的理论知识以及作者是如何应用Deepwalk的思想来解决问题的。<br>
+对于一个图 $G$，我们一般用点的集合 $V$ 和边的集合 $E$ 来描述。即为 $G(V,E)$。其中 $V$ 为我们数据集里面所有的点 $(v_1,v_2,…v_n)$。对于 $V$中的任意两个点，可以有边连接，也可以没有边连接。我们定义权重 $w_ij$为点 $v_i$和点 $v_j$之间的权重，并且通常假设是无向图，有 $w_ij=w_ji$。最简单的图示例如下所示：<br>
+<img src="graph.png" width="100%" height="100%"><br>
+左图共有7个顶点，两个顶点相连则表示为$w_ji=w_ji=1$，这时将$W$称为邻接矩阵，显而易见其为对称矩阵。将左图转化为矩阵后，就可以利用矩阵的运算方便地进行图计算。值得一提的是，$w_ji$表征的是两个点之间的关系度量，当然可以有欧式距离、联合概率等多种度量方式。<br>
+Deepwalk来源于《DeepWalk: Online Learning of Social Representations》这篇论文，它的思想简单易懂，主要借鉴了word2vec，产生句子的方式为从网络中随机一个节点，然后以此节点为起点，按概率从其邻居中选择下一个节点，迭代下去将得到的K的节点作为word2vec中的句子。于是，将网络结构通过Random walk的方式，转换为类似“sentence”的节点序列的形式，再借用Skim-gram模型实现节点的嵌入式向量表达。</p>
 <hr class="footnotes-sep">
 <section class="footnotes">
 <ol class="footnotes-list">
@@ -677,6 +689,8 @@ Key-Value memory的好处在于可以方便的对先验知识进行编码，这�
 <li id="fn9" class="footnote-item"><p>Facebook，端到端记忆网络，<a href="https://arxiv.org/abs/1503.08895" target="_blank" rel="noopener">https://arxiv.org/abs/1503.08895</a> <a href="#fnref9" class="footnote-backref">↩</a></p>
 </li>
 <li id="fn10" class="footnote-item"><p>记忆网络-知乎专栏，<a href="https://zhuanlan.zhihu.com/p/29679742" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/29679742</a> <a href="#fnref10" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn11" class="footnote-item"><p>AI研习社，Word2Vec结构，<a href="https://cloud.tencent.com/developer/article/1065628" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1065628</a> <a href="#fnref11" class="footnote-backref">↩</a></p>
 </li>
 </ol>
 </section>
@@ -1047,7 +1061,7 @@ Key-Value memory的好处在于可以方便的对先验知识进行编码，这�
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">6.9k</span>
+            <span class="white-color">8.2k</span>
             
 
             <br>
