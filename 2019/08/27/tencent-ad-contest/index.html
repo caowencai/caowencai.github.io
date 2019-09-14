@@ -434,14 +434,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>字数:&nbsp;&nbsp;
-                    8.2k
+                    8.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    29 分
+                    30 分
                 </div>
                 
                 
@@ -461,7 +461,7 @@
 <blockquote>
 <p>评委：“这是最接近腾讯真实业务的方案。”</p>
 </blockquote>
-<p>本文将从源码着手，深度解读该冠军方案是如何一步步从rough data清洗、特征工程到运用多种模型融合实现最佳效果的。</p>
+<p>本文将从源码着手，深度解读该冠军方案是如何一步步从rough data清洗、特征工程到运用多种模型融合实现最佳效果的。作为一名数据竞赛经验薄浅的算法工程师，期望尽可能的将里面涉及到的知识、技巧、模型、算法作一个细致的总结，所以行文可能比较基础难免冗长。</p>
 <h2>背景介绍</h2>
 <p>作为国内领先的大数据营销平台，全新升级的腾讯广告，以更强大的全景连接、更全链的数字智慧、更友好的人本体验等三大核心能力，构建品牌与用户的智慧连接，助力广告主高效实现商业增长。而复杂的社交场景，多样的广告形态，以及庞大的人群数据，给实现这一目标带来了不小的挑战。为攻克这些挑战，腾讯广告也在不断地寻找更为优秀的数据挖掘方式和机器学习算法。<br>
 本次算法大赛<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>的题目是源于腾讯广告业务中一个面向广告主服务的真实业务产品 ——广告曝光预估。广告曝光预估的目的是在广告主创建新广告和修改广告设置时，为广告主提供未来的广告曝光效果参考。通过这个预估参考，广告主能避免盲目的优化尝试，有效缩短广告的优化周期，降低试错成本， 使广告效果尽快达到广告主的预期范围。比赛中使用的数据经过脱敏处理，通过本次大赛，我们旨在挑选出更为优秀的曝光预估算法以及遴选出杰出的社交广告算法达人。</p>
@@ -669,7 +669,9 @@ Word2Vec 模型中，主要有 Skip-Gram 和 CBOW 两种模型，从直观上理
 <img src="graph.png" width="100%" height="100%"><br>
 左图共有7个顶点，两个顶点相连则表示为$w_ji=w_ji=1$，这时将$W$称为邻接矩阵，显而易见其为对称矩阵。将左图转化为矩阵后，就可以利用矩阵的运算方便地进行图计算。值得一提的是，$w_ji$表征的是两个点之间的关系度量，当然可以有欧式距离、联合概率等多种度量方式。<br>
 Deepwalk来源于《DeepWalk: Online Learning of Social Representations》这篇论文，它的思想简单易懂，主要借鉴了word2vec，产生句子的方式为从网络中随机一个节点，然后以此节点为起点，按概率从其邻居中选择下一个节点，迭代下去将得到的K的节点作为word2vec中的句子。于是，将网络结构通过Random walk的方式，转换为类似“sentence”的节点序列的形式，再借用Skim-gram模型实现节点的嵌入式向量表达。</p>
-<h2>模型训练</h2>
+<h2>总结</h2>
+<p>本文详细介绍了冠军方案中涉及到的各个子模型的原理和用途，包括如何提取特征<br>
+、提取了什么特征以及提取特征的意义。但由于经验的不足，尚未从特征角度阐述为什么要提取这些特征，以及如何通过数据EDA来辅助特征工程，构造出有意义的特征并最终提升模型的效果。</p>
 <hr class="footnotes-sep">
 <section class="footnotes">
 <ol class="footnotes-list">
@@ -1064,7 +1066,7 @@ Deepwalk来源于《DeepWalk: Online Learning of Social Representations》这篇
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">8.2k</span>
+            <span class="white-color">8.4k</span>
             
 
             <br>
