@@ -669,6 +669,7 @@ Word2Vec 模型中，主要有 Skip-Gram 和 CBOW 两种模型，从直观上理
 <img src="graph.png" width="100%" height="100%"><br>
 左图共有7个顶点，两个顶点相连则表示为$w_ji=w_ji=1$，这时将$W$称为邻接矩阵，显而易见其为对称矩阵。将左图转化为矩阵后，就可以利用矩阵的运算方便地进行图计算。值得一提的是，$w_ji$表征的是两个点之间的关系度量，当然可以有欧式距离、联合概率等多种度量方式。<br>
 Deepwalk来源于《DeepWalk: Online Learning of Social Representations》这篇论文，它的思想简单易懂，主要借鉴了word2vec，产生句子的方式为从网络中随机一个节点，然后以此节点为起点，按概率从其邻居中选择下一个节点，迭代下去将得到的K的节点作为word2vec中的句子。于是，将网络结构通过Random walk的方式，转换为类似“sentence”的节点序列的形式，再借用Skim-gram模型实现节点的嵌入式向量表达。</p>
+<h2>模型训练</h2>
 <hr class="footnotes-sep">
 <section class="footnotes">
 <ol class="footnotes-list">
