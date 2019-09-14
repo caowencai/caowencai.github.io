@@ -39,11 +39,11 @@
       <category term="model" scheme="https://caowencai.com/categories/model/"/>
     
     
-      <category term="embedding" scheme="https://caowencai.com/tags/embedding/"/>
-    
       <category term="腾讯广告" scheme="https://caowencai.com/tags/%E8%85%BE%E8%AE%AF%E5%B9%BF%E5%91%8A/"/>
     
       <category term="竞赛" scheme="https://caowencai.com/tags/%E7%AB%9E%E8%B5%9B/"/>
+    
+      <category term="embedding" scheme="https://caowencai.com/tags/embedding/"/>
     
   </entry>
   
