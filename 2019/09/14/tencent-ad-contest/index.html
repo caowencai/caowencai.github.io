@@ -632,10 +632,10 @@ CIN最终学习出的特征交互的阶数是由网络的层数决定的，而�
 <strong>Key-Value</strong>用Key addressing和Value reading分别代表End-To-End中的Input和Output部分，所有的记忆都被存储在Key-Value memory中，key负责寻址lookup，也就是对memory与Question的相关程度进行评分，而value则负责reading，也就是对记忆的值进行加权求和得到输出。整个模型的运行机制为：</p>
 <ul>
 <li><strong>key hashing</strong>：首先根据输入的问题从知识源中检索出与问题相关的facts，检索的方法可以是至少包含一个相同的实体等多种方法。也就是上图中下面的绿色部分，相当于一个记忆的子集。这部分工作可以在与处理数据的时候进行。然后将其作为模型输入的一部分训练的时候输入模型即可。</li>
-<li><strong>key addressing</strong>：寻址，也就是对memory进行相关性评分。用key memory与输入的Question相乘之后做softmax得到一个概率分布。概率大小等效于相关程度。其中$A\phi_X$ 、$A\phi_K$ 和 $A\phi_V$ 都是embedding模型，对输入问题、key、Value进行编码得到其向量表示。</li>
-<li><strong>Value Reading</strong>：有了相关性评分$P_{h_i}$，接下来就对value memory $A\phi_V$ 进行加权求和即可，得到一个输出向量。</li>
+<li><strong>key addressing</strong>：寻址，也就是对memory进行相关性评分。用key memory与输入的Question相乘之后做softmax得到一个概率分布。概率大小等效于相关程度。其中$A \Phi_X$ 、$A \Phi_K$ 和 $A \Phi_V$ 都是embedding模型，对输入问题、key、Value进行编码得到其向量表示。</li>
+<li><strong>Value Reading</strong>：有了相关性评分$P_{h_i}$，接下来就对value memory $A\Phi_V$ 进行加权求和即可，得到一个输出向量。</li>
 </ul>
-<p>这样就完成了一个hop操作，接下来跟<strong>End-To-End</strong>一样，将输出向量 $o$ 与输入问题的向量表示 $q$ 相加，经过 $R_j$ 矩阵进行映射，在作为下一层的输入，重复循环得到$q_{H+1}$，为问题答案的嵌入式向量表示。而$B\phi_Y$是候选答案寻址空间，可以和字典空间一模一样，相当于在领域知识库内搜索答案，也可以是另一个领域外的候选词库，可以发现新词的答案。最终都是通过交叉熵作为损失函数，端到端的对模型进行反向传播训练。整个过程看下来其实跟end-to-end模型很相似，最关键的地方加在于Key-Value的memory如何进行表示，这也是本模型的创新所在。<br>
+<p>这样就完成了一个hop操作，接下来跟<strong>End-To-End</strong>一样，将输出向量 $o$ 与输入问题的向量表示 $q$ 相加，经过 $R_j$ 矩阵进行映射，在作为下一层的输入，重复循环得到$q_{H+1}$，为问题答案的嵌入式向量表示。而$B\Phi_Y$是候选答案寻址空间，可以和字典空间一模一样，相当于在领域知识库内搜索答案，也可以是另一个领域外的候选词库，可以发现新词的答案。最终都是通过交叉熵作为损失函数，端到端的对模型进行反向传播训练。整个过程看下来其实跟end-to-end模型很相似，最关键的地方加在于Key-Value的memory如何进行表示，这也是本模型的创新所在。<br>
 Key-Value memory的好处在于可以方便的对先验知识进行编码，这样就可以让每个领域的人都方便的将本领域内的一些背景知识编码进记忆中，从而训练自己的QA系统，相比于end-to-end模型将相同的输入经过不同的矩阵分别编码到Input memory和Output memory，Key-Value则选择对输入首先进行一个（key， value）形式的表示，然后再分别编码进入key和value两个memory模块，这样就有了更多的变化和灵活性。我们可以按照自己的理解对数据进行key索引和value记忆，而不需要完全依赖于模型的embedding矩阵，这样也可以使模型更方便的找到相关的记亿并产生与答案最相近的输出。论文中根据不同形式的输入（KB或者wiki文章），提出了几种不同的编码方式，感兴趣的可以<a href="https://arxiv.org/abs/1606.03126" target="_blank" rel="noopener">参见原文</a>。<br>
 回到主题中来，Key-Value在这个方案中是如何被应用的？通过作者放出的PPT可以看到，作者通过Key-Value Memory的模型实现浮点数到向量的映射，不过采用的是下图的精简模型：<br>
 <img src="key-value2.png" width="100%" height="100%"><br>
@@ -649,7 +649,7 @@ Key-Value memory的好处在于可以方便的对先验知识进行编码，这�
     kv_emb=tf.reshape(kv_emb,[-1,len(hparams.kv_features)*hparams.k])
     dnn_input.append(kv_emb)
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>该段代码首先通过index将浮点数的区间（0~1）划分为N=20个子区间，每一个代表一个键值进行索引，然后计算每个样本的每个特征值与这20个区间的距离。这里需要注意的是weights已经增加了一个维度，每个kv_features都计算了与21个键值index的距离，然后每一个权重值与kv_emb_v2嵌入式特征矩阵相乘累加，reshape后得对最终的特征矩阵kv_emb，这里面的维度很容易出错，最终每个kv特征被嵌入式到hparams.k=16的向量空间中。</p>
+<p>该段代码首先通过index将浮点数的区间（0~1）划分为 N=20 个子区间，每一个代表一个键值进行索引，然后计算每个样本的每个特征值与这20个区间的距离。这里需要注意的是weights已经增加了一个维度，每个kv_features都计算了与21个键值index的距离，然后每一个权重值与kv_emb_v2嵌入式特征矩阵相乘累加，reshape后得对最终的特征矩阵kv_emb，这里面的维度很容易出错，最终每个kv特征被嵌入式到hparams.k=16的向量空间中。</p>
 <blockquote>
 <p>这里不由得产生了一个问题，<strong>key-value与连续值分桶嵌入式的区别是什么，为何模型要采用key-value？</strong></p>
 </blockquote>
@@ -662,10 +662,10 @@ Word2Vec 模型中，主要有 Skip-Gram 和 CBOW 两种模型，从直观上理
 假设从我们的训练文档中抽取出10000个唯一不重复的单词组成词汇表，对这10000个单词进行one-hot编码，得到的每个单词都是一个10000维的向量，向量每个维度的值只有0或者1。而对模型训练的训练样本是 （input word, output word） 这样的单词对，训练时通过softmax函数将模型输出转化为10000维的向量，与output word 的one-hot编码对应。模型训练完后得到的隐藏层参数矩阵为$W$，它的维度为10000*k（神经元个数，等效于嵌入式的特征空间维数），而由于输入为one-hot编码，隐藏层实现的功能其实类似于一个查找标，每一个向量从矩阵$W$中查找到其在隐空间中的向量表示，于是$W$的每一行就是一个原始变量的嵌入式向量，即原始位点在转换空间后的坐标。这时候大家容易发现一个问题，如果文本中某个词特别多怎么办，例如“the”在文章中出现频次超高，那模型就需要对高频词进行抑制，方法包括对高频次单词进行抽样来减少训练样本的个数、将常见的单词组合（word pairs）或者词组作为单个“words”来处理以及<strong>negative sampling</strong>。<br>
 关于Word2Vec更多朴实近人的介绍参考博客<sup class="footnote-ref"><a href="#fn11" id="fnref11">[11]</a></sup>。</p>
 <h3>Deepwalk</h3>
-<p>Deepwal源自图理论，关于图网络不得不提的是清华大学孙茂松组的图网络综述[^12]，该文总结了近年来图神经网络领域的经典模型与典型应用，对于希望快速了解这一领域的读者，不妨先从这篇文章看起。 而且该文还提到“<strong>DeepWalk、LINE、SDNE 等方法在网络表示学习领域取得了很大的成功，然而，这些方法在计算上较为复杂并且在大规模的图上并不是最优的，GNN旨在解决这些问题。</strong>”也就是说Deepwalk是有一定局限性的模型，当然这并不是文本的重点，本文关心的是Deepwalk的理论知识以及作者是如何应用Deepwalk的思想来解决问题的。<br>
-对于一个图 $G$，我们一般用点的集合 $V$ 和边的集合 $E$ 来描述。即为 $G(V,E)$。其中 $V$ 为我们数据集里面所有的点 $(v_1,v_2,…v_n)$。对于 $V$中的任意两个点，可以有边连接，也可以没有边连接。我们定义权重 $w_ij$为点 $v_i$和点 $v_j$之间的权重，并且通常假设是无向图，有 $w_ij=w_ji$。最简单的图示例如下所示：<br>
+<p>Deepwal源自图理论，关于图网络不得不提的是清华大学孙茂松组的图网络综述<sup class="footnote-ref"><a href="#fn12" id="fnref12">[12]</a></sup>，该文总结了近年来图神经网络领域的经典模型与典型应用，对于希望快速了解这一领域的读者，不妨先从这篇文章看起。 而且该文还提到“<strong>DeepWalk、LINE、SDNE 等方法在网络表示学习领域取得了很大的成功，然而，这些方法在计算上较为复杂并且在大规模的图上并不是最优的，GNN旨在解决这些问题。</strong>”也就是说Deepwalk是有一定局限性的模型，当然这并不是文本的重点，本文关心的是Deepwalk的理论知识以及作者是如何应用Deepwalk的思想来解决问题的。<br>
+对于一个图 $G$，我们一般用点的集合 $V$ 和边的集合 $E$ 来描述。即为 $G(V,E)$。其中 $V$ 为我们数据集里面所有的点 $(v_1,v_2,…v_n)$。对于 $V$中的任意两个点，可以有边连接，也可以没有边连接。我们定义权重 $w_{ij}$为点 $v_i$和点 $v_j$之间的权重，并且通常假设是无向图，有 $w_{ij}=w_{ji}$。最简单的图示例如下所示：<br>
 <img src="graph.png" width="100%" height="100%"><br>
-左图共有7个顶点，两个顶点相连则表示为$w_ji=w_ji=1$，这时将$W$称为邻接矩阵，显而易见其为对称矩阵。将左图转化为矩阵后，就可以利用矩阵的运算方便地进行图计算。值得一提的是，$w_ji$表征的是两个点之间的关系度量，当然可以有欧式距离、联合概率等多种度量方式。<br>
+左图共有7个顶点，两个顶点相连则表示为$w_{ji}=w_{ji}=1$，这时将$W$称为邻接矩阵，显而易见其为对称矩阵。将左图转化为矩阵后，就可以利用矩阵的运算方便地进行图计算。值得一提的是，$w_ji$表征的是两个点之间的关系度量，当然可以有欧式距离、联合概率等多种度量方式。<br>
 Deepwalk来源于《DeepWalk: Online Learning of Social Representations》这篇论文，它的思想简单易懂，主要借鉴了word2vec，产生句子的方式为从网络中随机一个节点，然后以此节点为起点，按概率从其邻居中选择下一个节点，迭代下去将得到的K的节点作为word2vec中的句子。于是，将网络结构通过Random walk的方式，转换为类似“sentence”的节点序列的形式，再借用Skim-gram模型实现节点的嵌入式向量表达。</p>
 <h2>总结</h2>
 <p>本文详细介绍了冠军方案中涉及到的各个子模型的原理和用途，包括如何提取特征、提取了什么特征以及提取特征的意义。但由于经验的不足，尚未从特征角度阐述为什么要提取这些特征，以及如何通过数据EDA来辅助特征工程，构造出有意义的特征并最终提升模型的效果。</p>
@@ -680,7 +680,7 @@ Deepwalk来源于《DeepWalk: Online Learning of Social Representations》这篇
 </li>
 <li id="fn4" class="footnote-item"><p>大赛冠军源码， <a href="https://github.com/guoday/Tencent2019_Preliminary_Rank1st" target="_blank" rel="noopener">https://github.com/guoday/Tencent2019_Preliminary_Rank1st</a> <a href="#fnref4" class="footnote-backref">↩</a></p>
 </li>
-<li id="fn5" class="footnote-item"><p>FM，<a href="https://tech.meituan.com/2016/03/03/deep-understanding-of-ffm-principles-and-practices.html" target="_blank" rel="noopener">https://tech.meituan.com/2016/03/03/deep-understanding-of-ffm-principles-and-practices.html</a> <a href="#fnref5" class="footnote-backref">↩</a></p>
+<li id="fn5" class="footnote-item"><p>美团，FM，<a href="https://tech.meituan.com/2016/03/03/deep-understanding-of-ffm-principles-and-practices.html" target="_blank" rel="noopener">https://tech.meituan.com/2016/03/03/deep-understanding-of-ffm-principles-and-practices.html</a> <a href="#fnref5" class="footnote-backref">↩</a></p>
 </li>
 <li id="fn6" class="footnote-item"><p>FM博客，<a href="https://www.csuldw.com/2019/02/08/2019-02-08-fm-algorithm-theory/" target="_blank" rel="noopener">https://www.csuldw.com/2019/02/08/2019-02-08-fm-algorithm-theory/</a> <a href="#fnref6" class="footnote-backref">↩</a></p>
 </li>
@@ -693,6 +693,8 @@ Deepwalk来源于《DeepWalk: Online Learning of Social Representations》这篇
 <li id="fn10" class="footnote-item"><p>记忆网络-知乎专栏，<a href="https://zhuanlan.zhihu.com/p/29679742" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/29679742</a> <a href="#fnref10" class="footnote-backref">↩</a></p>
 </li>
 <li id="fn11" class="footnote-item"><p>AI研习社，Word2Vec结构，<a href="https://cloud.tencent.com/developer/article/1065628" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1065628</a> <a href="#fnref11" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn12" class="footnote-item"><p>清华大学孙茂松组，图网络综述，<a href="https://arxiv.org/abs/1812.08434" target="_blank" rel="noopener">https://arxiv.org/abs/1812.08434</a> <a href="#fnref12" class="footnote-backref">↩</a></p>
 </li>
 </ol>
 </section>
