@@ -13,7 +13,7 @@
       
       <categories>
           
-          <category> stock </category>
+          <category> AI </category>
           
           <category> model </category>
           
@@ -22,11 +22,11 @@
       
         <tags>
             
-            <tag> stock prediction </tag>
+            <tag> 股票 </tag>
             
             <tag> GAN </tag>
             
-            <tag> AI </tag>
+            <tag> 强化学习 </tag>
             
         </tags>
       

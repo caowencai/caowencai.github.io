@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caowencai.com/"/>
-  <updated>2020-03-05T13:43:21.558Z</updated>
+  <updated>2020-03-15T01:44:49.583Z</updated>
   <id>https://caowencai.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://caowencai.com/2019/11/07/ai-for-stock-prediction/"/>
     <id>https://caowencai.com/2019/11/07/ai-for-stock-prediction/</id>
     <published>2019-11-07T12:18:23.000Z</published>
-    <updated>2020-03-05T13:43:21.558Z</updated>
+    <updated>2020-03-15T01:44:49.583Z</updated>
     
     <summary type="html">
     
@@ -35,16 +35,16 @@
     
     </summary>
     
-      <category term="stock" scheme="https://caowencai.com/categories/stock/"/>
+      <category term="AI" scheme="https://caowencai.com/categories/AI/"/>
     
-      <category term="model" scheme="https://caowencai.com/categories/stock/model/"/>
+      <category term="model" scheme="https://caowencai.com/categories/AI/model/"/>
     
     
-      <category term="stock prediction" scheme="https://caowencai.com/tags/stock-prediction/"/>
+      <category term="股票" scheme="https://caowencai.com/tags/%E8%82%A1%E7%A5%A8/"/>
     
       <category term="GAN" scheme="https://caowencai.com/tags/GAN/"/>
     
-      <category term="AI" scheme="https://caowencai.com/tags/AI/"/>
+      <category term="强化学习" scheme="https://caowencai.com/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
