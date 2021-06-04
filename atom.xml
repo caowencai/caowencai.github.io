@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caowencai.com/"/>
-  <updated>2020-03-15T01:44:49.583Z</updated>
+  <updated>2021-06-04T13:57:46.941Z</updated>
   <id>https://caowencai.com/</id>
   
   <author>
@@ -15,6 +15,42 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ICML-2021图相关论文汇总</title>
+    <link href="https://caowencai.com/2021/06/04/icml-2021-graph/"/>
+    <id>https://caowencai.com/2021/06/04/icml-2021-graph/</id>
+    <published>2021-06-04T13:57:45.000Z</published>
+    <updated>2021-06-04T13:57:46.941Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1&gt;ICML-2021图相关论文汇总&lt;/h1&gt;
+&lt;h2&gt;数据统计&lt;/h2&gt;
+&lt;p&gt;数据统计转自博主Sergey Ivanov，几个有意思的统计如下：&lt;/p&gt;
+&lt;p&gt;不同大学的paper分布&lt;/p&gt;
+&lt;img src=&quot;大学.jpg&quot; width=&quot;90%&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="paper" scheme="https://caowencai.com/categories/paper/"/>
+    
+      <category term="graph" scheme="https://caowencai.com/categories/paper/graph/"/>
+    
+    
+      <category term="icml" scheme="https://caowencai.com/tags/icml/"/>
+    
+      <category term="paper" scheme="https://caowencai.com/tags/paper/"/>
+    
+      <category term="graph" scheme="https://caowencai.com/tags/graph/"/>
+    
+  </entry>
   
   <entry>
     <title>应用当前AI最先进技术预测股票走势【翻译】</title>
