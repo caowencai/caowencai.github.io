@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://caowencai.com/"/>
-  <updated>2021-06-04T13:57:46.941Z</updated>
+  <updated>2021-08-15T09:03:49.622Z</updated>
   <id>https://caowencai.com/</id>
   
   <author>
@@ -15,6 +15,42 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>图神经网络在分布电路设计中的应用</title>
+    <link href="https://caowencai.com/2021/08/15/gnn-circuit-design/"/>
+    <id>https://caowencai.com/2021/08/15/gnn-circuit-design/</id>
+    <published>2021-08-15T09:03:47.000Z</published>
+    <updated>2021-08-15T09:03:49.622Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;数学上，图是节点以及节点之间关系的集合，任意尺寸上的物体在任意空间上能够以任意形式发生连接，就可以构成一个图，从这个角度讲，一切关系皆是图。&lt;br&gt;
+而从关系的角度看世界，大到宇宙中星球之间的引力关系，城市中交通道路网的交错关系，社交网络中人与人之
+        
+      
+    
+    </summary>
+    
+      <category term="paper" scheme="https://caowencai.com/categories/paper/"/>
+    
+      <category term="graph" scheme="https://caowencai.com/categories/paper/graph/"/>
+    
+      <category term="gnn" scheme="https://caowencai.com/categories/paper/graph/gnn/"/>
+    
+    
+      <category term="circuit" scheme="https://caowencai.com/tags/circuit/"/>
+    
+      <category term="gnn" scheme="https://caowencai.com/tags/gnn/"/>
+    
+      <category term="graph" scheme="https://caowencai.com/tags/graph/"/>
+    
+  </entry>
   
   <entry>
     <title>ICML-2021图相关论文汇总</title>
@@ -44,11 +80,11 @@
       <category term="graph" scheme="https://caowencai.com/categories/paper/graph/"/>
     
     
+      <category term="graph" scheme="https://caowencai.com/tags/graph/"/>
+    
       <category term="icml" scheme="https://caowencai.com/tags/icml/"/>
     
       <category term="paper" scheme="https://caowencai.com/tags/paper/"/>
-    
-      <category term="graph" scheme="https://caowencai.com/tags/graph/"/>
     
   </entry>
   
@@ -57,7 +93,7 @@
     <link href="https://caowencai.com/2019/11/07/ai-for-stock-prediction/"/>
     <id>https://caowencai.com/2019/11/07/ai-for-stock-prediction/</id>
     <published>2019-11-07T12:18:23.000Z</published>
-    <updated>2020-03-15T01:44:49.583Z</updated>
+    <updated>2021-08-15T00:50:43.510Z</updated>
     
     <summary type="html">
     

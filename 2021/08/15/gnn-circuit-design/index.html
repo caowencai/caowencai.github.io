@@ -6,21 +6,10 @@
     <meta charset="utf-8">
     <meta name="google-site-verification" content="iJnBCBcs429OL3QgEJ5f61kYMchChIR0NpwyJMTc1mc">
     <meta name="baidu-site-verification" content="Ox4c4LsheZ">
-    <meta name="keywords" content="ICML-2021图相关论文汇总, 图计算 machine-learning AI 机器学习 人工智能 推荐 算法 深度学习">
-    <meta name="description" content="ICML-2021图相关论文汇总
-数据统计
-数据统计转自博主Sergey Ivanov，几个有意思的统计如下：
-不同大学的paper分布
-
-不同机构的paper分布
-
-中国机构的paper分布
-
-美国机构的paper分布
-
-全截图
-
-图论文">
+    <meta name="keywords" content="图神经网络在分布电路设计中的应用, 图计算 machine-learning AI 机器学习 人工智能 推荐 算法 深度学习">
+    <meta name="description" content="
+数学上，图是节点以及节点之间关系的集合，任意尺寸上的物体在任意空间上能够以任意形式发生连接，就可以构成一个图，从这个角度讲，一切关系皆是图。
+而从关系的角度看世界，大到宇宙中星球之间的引力关系，城市中交通道路网的交错关系，社交网络中人与人">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -28,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>ICML-2021图相关论文汇总 | Wencai&#39;s Blog</title>
+    <title>图神经网络在分布电路设计中的应用 | Wencai&#39;s Blog</title>
     <link rel="icon" type="image/jpeg" href="/butter.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -282,13 +271,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/25.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        ICML-2021图相关论文汇总
+                        图神经网络在分布电路设计中的应用
                     </div>
                 </div>
             </div>
@@ -399,16 +388,16 @@
                     
                     <div class="article-tag">
                         
+                        <a href="/tags/circuit/" target="_blank">
+                            <span class="chip tag-bg-color">circuit</span>
+                        </a>
+                        
+                        <a href="/tags/gnn/" target="_blank">
+                            <span class="chip tag-bg-color">gnn</span>
+                        </a>
+                        
                         <a href="/tags/graph/" target="_blank">
                             <span class="chip tag-bg-color">graph</span>
-                        </a>
-                        
-                        <a href="/tags/icml/" target="_blank">
-                            <span class="chip tag-bg-color">icml</span>
-                        </a>
-                        
-                        <a href="/tags/paper/" target="_blank">
-                            <span class="chip tag-bg-color">paper</span>
                         </a>
                         
                     </div>
@@ -427,6 +416,10 @@
                             graph
                         </a>
                         
+                        <a href="/categories/paper/graph/gnn/" class="post-category" target="_blank">
+                            gnn
+                        </a>
+                        
                     </div>
                     
                 </div>
@@ -435,7 +428,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布:&nbsp;&nbsp;
-                    2021-06-04
+                    2021-08-15
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -449,14 +442,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>字数:&nbsp;&nbsp;
-                    2k
+                    3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    12 分
+                    11 分
                 </div>
                 
                 
@@ -472,82 +465,109 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1>ICML-2021图相关论文汇总</h1>
-<h2>数据统计</h2>
-<p>数据统计转自博主Sergey Ivanov，几个有意思的统计如下：</p>
-<p>不同大学的paper分布</p>
-<img src="大学.jpg" width="90%" height="90%">
-<p>不同机构的paper分布<br>
-<img src="num_orga.png" width="90%" height="90%"></p>
-<p>中国机构的paper分布</p>
-<img src="中国机构.jpg" width="90%" height="90%">
-<p>美国机构的paper分布</p>
-<img src="美国机构.jpg" width="90%" height="90%">
-<p>全截图</p>
-<img src="all-twetter1.jpg" width="90%" height="90%">
-<h2>图论文清单</h2>
-<p>官网链接：<a href="https://icml.cc/Conferences/2021/AcceptedPapersInitial" target="_blank" rel="noopener">https://icml.cc/Conferences/2021/AcceptedPapersInitial</a></p>
+                <blockquote>
+<p>数学上，图是节点以及节点之间关系的集合，任意尺寸上的物体在任意空间上能够以任意形式发生连接，就可以构成一个图，从这个角度讲，一切关系皆是图。<br>
+而从关系的角度看世界，大到宇宙中星球之间的引力关系，城市中交通道路网的交错关系，社交网络中人与人之间的好友互访关系，小到蛋白质网络中的交互关系，化合物分子中原子间化合键关系，纳米集成电路中器件与器件之间的布局关系，几乎万物可以看做以某种关系连接起来，继而都可以视作一个图。</p>
+</blockquote>
+<h2>引文</h2>
+<p>现在大家的手机基本上都是5G手机，从2G到4G、5G信号的变化，本质上就是信号频率的增大，在以后的6G时代，信号的频率会进一步升级。而当信号频率不断增大后，对相关的芯片设计提出了更高的挑战，这其中的一个关键器件就是谐振器，谐振器就是让某个（或某段）频率信号通过，阻挡其他频率信号，达到选泽的目的，主要起到频率控制的作用，所有电子产品涉及频率的发射和接收都需要谐振器（比如射频芯片）。</p>
+<p>近日，谷歌大脑团队在《Nature》发布了一篇使用图神经网络和强化学习实现芯片布局的paper，其中提到可以在6小时内生成符合工业生产要求的芯片布局，并已应用到下一代谷歌TPU的生成设计中。GNN应用与芯片电路设计吸引了笔者的兴趣，通过调研，2019年MIT团队发表了一篇GNN应用于芯片布局的代表性paper(<a href="http://proceedings.mlr.press/v97/zhang19e.html" target="_blank" rel="noopener">Circuit-GNN: Graph Neural Networks for Distributed Circuit Design</a>)，本文即对此进行解读。</p>
+<p>该文章通过将高频谐振器中元器件之间的关系（相对空间距离）构造成一种边，从图的角度出发，提出了一种使用图神经网络（GNN）方法进行高效设计滤波器电路的方法。下面主要从以下几点进行展开：</p>
 <ol>
-<li><strong>Two Heads are Better Than One: Hypergraph-Enhanced Graph Reasoning for Visual Event Ratiocination</strong> <em>Wenbo  Zheng (School of Software Engineering, Xi’an Jiaotong University）, Lan Yan （The State Key Laboratory for Management and Control of Complex Systems, Institute of Automation, Chinese Academy of Sciences）, Chao Gou (School of Intelligent Systems Engineering, Sun Yat-sen University）, Fei-Yue Wang (The State Key Laboratory for Management and Control of  Complex Systems, Institute of Automation, Chinese Academy of Sciences）</em></li>
-<li><strong>Deep Latent Graph Matching</strong> <em>Tianshu Yu (Arizona  State University）, Runzhong Wang (Shanghai Jiao Tong University）,  Junchi Yan (Shanghai Jiao Tong University）, baoxin Li (Arizona State  University）</em></li>
-<li><strong>On Explainability of Graph Neural Networks      via Subgraph Explorations</strong> <em>Hao Yuan (Texas A&amp;M University）,      Haiyang Yu (Texas A&amp;M University）, Jie Wang (University of Science      and Technology of China）, Kang Li (Rutgers）, Shuiwang Ji (Texas A&amp;M      University）</em></li>
-<li><strong>GRAND: Graph Neural Diffusion</strong> <em>Ben Chamberlain      (Twitter）, Maria Gorinova (University of Edinburgh）, Michael Bronstein      (Twitter）, Stefan Webb (Twitter）, James Rowbottom (Twitter）, Emanuele      Rossi (Twitter）</em></li>
-<li><strong>Optimization of Graph Neural Networks:      Implicit Acceleration by Skip Connections and More Depth</strong> <em>Keyulu Xu (MIT）,      Mozhi Zhang (University of Maryland）, Stefanie Jegelka (Massachusetts      Institute of Technology）, Kenji Kawaguchi (MIT）</em></li>
-<li><strong>Theory of Spectral Method for Union of      Subspaces-Based Random Geometry Graph</strong> <em>Gen Li (Tsinghua University, China）,      Yuantao Gu (Tsinghua University）</em></li>
-<li><strong>Differentially Private Densest Subgraph      Detection</strong> <em>Dung      Nguyen (University of Virginia）, Anil Vullikanti (Biocomplexity      Institute and Dept of Computer Science, University of Virginia）</em></li>
-<li><strong>Information Obfuscation of Graph Neural      Networks</strong> <em>Peiyuan      Liao (Carnegie Mellon University）, Han Zhao (University of Illinois at      Urbana-Champaign）, Keyulu Xu (MIT）, Tommi Jaakkola (MIT）, Geoff Gordon      (Carnegie Mellon University）, Stefanie Jegelka (Massachusetts Institute      of Technology）, Ruslan Salakhutdinov (Carnegie Mellen University）</em></li>
-<li><strong>Generative Causal Explanations for Graph      Neural Networks</strong> <em>Wanyu      LIN (University of Toronto）, Hao Lan (University of Toronto）, Baochun      Li (University of Toronto）</em></li>
-<li><strong>How Framelets Enhance Graph Neural Networks</strong> <em>Xuebin Zheng (The      University of Sydney）, Bingxin Zhou (The University of Sydney）, Junbin      Gao (The University of Sydney）, Yuguang Wang (Max Planck Institute for      Mathematics in Sciences; Shanghai Jiao Tong University; University of New      South Wales）, Pietro Lió (University of Cambridge）, Ming Li (Zhejiang      Normal University）, Guido Montufar (UCLA Math / Stat; MPI MIS）</em></li>
-<li><strong>GraphNorm: A Principled Approach to      Accelerating Graph Neural Network Training</strong> <em>Tianle Cai (Princeton University）,      Shengjie Luo (Peking University）, Keyulu Xu (MIT）, Di He (Microsoft      Research）, Tie-Yan Liu (Microsoft Research Asia）, Liwei Wang (Peking      University）</em></li>
-<li><strong>Self-supervised Graph-level Representation      Learning with Local and Global Structure</strong> <em>Minghao Xu (Shanghai Jiao Tong University）     , Hang Wang (Shanghai Jiao Tong University）, Bingbing Ni (Shanghai Jiao      Tong University）, Hongyu Guo (National Research Council Canada）, Jian      Tang (HEC Montreal &amp; MILA）</em></li>
-<li><strong>Let’s Agree to Degree: Comparing Graph      Convolutional Networks in the Message-Passing Framework</strong> <em>Floris Geerts      (University of Antwerp）, Filip Mazowiecki (MPI-SWS）, Guillermo Perez      (UAntwerpen）</em></li>
-<li><strong>GraphDF: A Discrete Flow Model for Molecular      Graph Generation</strong> <em>Youzhi      Luo (Texas A&amp;M University）, Keqiang Yan (Texas A&amp;M University,      College Station）, Shuiwang Ji (Texas A&amp;M University）</em></li>
-<li><strong>GLSearch: Maximum Common Subgraph Detection      via Learning to Search</strong> <em>Yunsheng Bai (UCLA）, Derek Xu (University of California, Los      Angeles）, Yizhou Sun (UCLA）, Wei Wang (UCLA）</em></li>
-<li><strong>Compositional Video Synthesis with Action      Graphs</strong> <em>Amir      Bar (Tel Aviv University）, Roi Herzig (Tel Aviv University/ UC Berkeley）     , Xiaolong Wang (UCSD）, Anna Rohrbach (UC Berkeley）, Gal Chechik      (NVIDIA / Bar-Ilan University）, Trevor Darrell (University of California      at Berkeley）, Amir Globerson (Tel Aviv University, Google）</em></li>
-<li><strong>Memory-Efficient Graph Neural Networks</strong> <em>Guohao Li (KAUST）,      Matthias Müller (Intel Labs）, Bernard Ghanem (KAUST）, Vladlen Koltun      (Intel Labs）</em></li>
-<li><strong>A Unified Lottery Ticket Hypothesis for      Graph Neural Networks</strong> <em>Tianlong Chen (University of Texas at Austin）, Yongduo Sui      (University of Science and Technology of China）, Xuxi Chen (University      of Texas at Austin）, Aston Zhang (AWS AI）, Zhangyang Wang (University      of Texas at Austin）</em></li>
-<li><strong>Flow-based Attribution in Graphical Models:      A Recursive Shapley Approach</strong> <em>Raghav Singal (Amazon）, George Michailidis      (University of Florida）, Hoiyi Ng (Amazon）</em></li>
-<li><strong>Discrete-Valued Latent Preference Matrix      Estimation with Graph Side Information</strong> <em>Changhun Jo (University of      Wisconsin-Madison）, Kangwook Lee (UW Madison）</em></li>
-<li><strong>Directional Graph Networks</strong> <em>Dominique Beaini      (InVivo AI）, Saro Passaro (University of Cambridge）, Vincent Létourneau      (Université de Ottawa）, Will Hamilton (McGill University and Mila）,      Gabriele Corso (University of Cambridge）, Pietro Lió (University of      Cambridge）</em></li>
-<li><strong>World Model as a Graph: Learning Latent      Landmarks for Planning</strong> <em>Lunjun Zhang (University of Toronto）, Ge Yang (University of      Chicago）, Bradly Stadie (Vector Institute）</em></li>
-<li><strong>Graph Cuts Always Find a Global Optimum for      Potts Models (With a Catch）</strong> <em>Hunter Lang (MIT）, David Sontag      (Massachusetts Institute of Technology）, Aravindan Vijayaraghavan      (Northwestern University）</em></li>
-<li><strong>Graph Contrastive Learning Automated</strong> <em>Yuning You (Texas      A&amp;M University）, Tianlong Chen (University of Texas at Austin）,      Yang Shen (Texas A&amp;M University）, Zhangyang Wang (University of      Texas at Austin）</em></li>
-<li><strong>Graph Mixture Density Networks</strong> <em>Federico Errica      (University of Pisa）, Davide Bacciu (University of Pisa）, Alessio      Micheli (Universita di Pisa）</em></li>
-<li><strong>Automated Graph Representation Learning with      Hyperparameter Importance Explanation</strong> <em>Xin Wang (Tsinghua University）, Shuyi Fan      (Tsinghua University）, Kun Kuang (Tsinghua University）, wenwu zhu      (Tsinghua University）</em></li>
-<li><strong>Symmetric Spaces for Graph Embeddings: A      Finsler-Riemannian Approach</strong> <em>Federico Lopez (HITS - Heidelberg Institute      for Theoretical Studies）, Beatrice Pozzetti (Heidelberg University）,      Steve Trettel (Stanford University）, Michael Strube (Heidelberg      Institute for Theoretical Studies）, Anna Wienhard (Heidelberg      University）</em></li>
-<li><strong>Skill Discovery for Exploration and Planning      using Deep Skill Graphs</strong> <em>Akhil Bagaria (Brown University）, Jason Senthil (Brown      University）, George Konidaris (Brown）</em></li>
-<li><strong>E(n） Equivariant Graph Neural Networks</strong> <em>Víctor Garcia      Satorras (University of Amsterdam\）, Emiel Hoogeboom (University of Amsterdam）, Max Welling (University of Amsterdam &amp; Qualcomm）</em></li>
-<li><strong>LEGO: Latent Execution-Guided Reasoning for      Multi-Hop Question Answering on Knowledge Graphs</strong> <em>Hongyu Ren      (Stanford University）, Hanjun Dai (Google Brain）, Bo Dai (Google Brain）     , Xinyun Chen (UC Berkeley）, Michihiro Yasunaga (Stanford University）,      Haitian Sun (Google）, Dale Schuurmans (Google / University of Alberta）,      Jure Leskovec (Stanford University）, Denny Zhou (Google Brain）</em></li>
-<li><strong>Order Matters: Probabilistic Modeling of      Node Sequence for Graph Generation</strong> <em>Xiaohui Chen (Tufts University）, Xu Han      (Tufts University）, Jiajing Hu (Tufts University）, Francisco R Ruiz      (DeepMind）, Liping Liu (Tufts University）</em></li>
-<li><strong>Towards Better Laplacian Representation in      Reinforcement Learning with Generalized Graph Drawing</strong> <em>Kaixin Wang      (National University of Singapore）, Kuangqi Zhou (National University of      Singapore）, Qixin Zhang (city university of hong kong）, Jie Shao ( Fudan  University）, Bryan Hooi (National University of Singapore）, Jiashi Feng      (National University of Singapore）</em></li>
-<li><strong>Spectral vertex sparsifiers and pair-wise      spanners over distributed graphs</strong> <em>Chunjiang Zhu (University of North Carolina      Greensboro）, Qinqing Liu (University of Connecticut）, Jinbo Bi      (University of Connecticut）</em></li>
-<li><strong>SGA: A Robust Algorithm for Partial Recovery      of Tree-Structured Graphical Models with Noisy Samples</strong> <em>Anshoo Tandon      (National University of Singapore）, Aldric Han (National University of      Singapore）, Vincent Tan (National University of Singapore）</em></li>
-<li><strong>Graph Convolution for Semi-Supervised      Classification: Improved Linear Separability and Out-of-Distribution      Generalization</strong> <em>Aseem      Baranwal (University of Waterloo）, Kimon Fountoulakis (University of      Waterloo）, Aukosh Jagannath (University of Waterloo）</em></li>
-<li><strong>Lipschitz normalization for self-attention      layers with application to graph neural networks</strong> <em>George Dasoulas      (Ecole Polytechnique, Paris, France）, Kevin Scaman (Noah’s Ark, Huawei      Technologies）, Aladin Virmaux (Huawei）</em></li>
-<li><strong>Online Graph Dictionary Learning</strong> <em>Cédric Vincent-Cuaz      (INRIA Sophia Antipolis）, Titouan Vayer (IRISA）, Rémi Flamary (École      Polytechnique）, Marco Corneli (Université Côte d’Azur）, Nicolas Courty      (UBS）</em></li>
-<li><strong>Breaking the Limits of Message Passing Graph      Neural Networks</strong> <em>Muhammet      Balcilar (Université de Rouen - LITIS）, Pierre Heroux (University of      Rouen Normandy）, Benoit Gauzere (INSA Rouen）, Sebastien Adam      (Université de Rouen Normandie）, Paul Honeine (LITIS Lab, Université de      Rouen Normandie）, Pascal Vasseur (LITIS Université de Rouen Normandie）</em></li>
-<li><strong>Towards Open Ad Hoc Teamwork Using      Graph-based Policy Learning</strong> <em>Muhammad Arrasy Rahman (The University of      Edinburgh）, Niklas Hopner (University of Amsterdam）, Filippos      Christianos (University of Edinburgh）, Stefano Albrecht (University of      Edinburgh）</em></li>
-<li><strong>From Local Structures to Size Generalization      in Graph Neural Networks</strong> <em>Gilad Yehudai (Weizmann Institute of      Science）, Ethan Fetaya (Bar-Ilan University）, eli meirom (NVIDIA）, Gal      Chechik (Nvidia）, Haggai Maron (NVIDIA Research）</em></li>
-<li><strong>GNNAutoScale: Scalable and Expressive Graph      Neural Networks via Historical Embeddings</strong> <em>Matthias Fey (TU Dortmund University）, Jan      Eric Lenssen (TU Dortmund）, Frank Weichert (Technical University of      Dortmund）, Jure Leskovec (Stanford University）</em></li>
-<li><strong>Local Graph Algorithms for Learning      Higher-Order Structures</strong> <em>Peter Macgregor (The University of Edinburgh）, He Sun      (University of Edinburgh）</em></li>
-<li><strong>Improving Molecular Graph Neural Network      Explainability with Orthonormalization and Induced Sparsity</strong> <em>Ryan Henderson      (Bayer）, Djork-Arné Clevert (Bayer AG）, Floriane Montanari (Bayer AG）</em></li>
-<li><strong>Directed Graph Embeddings in      Pseudo-Riemannian Manifolds</strong> <em>Aaron Sim (BenevolentAI）, Maciej Wiatrak      (BenevolentAI）, Angus Brayne (BenevolentAI）, Páidí Creed (BenevolentAI）     , Saee Paliwal (Benevolent AI）</em></li>
-<li><strong>Interpretable Stability Bounds for Spectral      Graph Filters</strong> <em>Henry      Kenlay (University of Oxford）, Dorina Thanou (Swiss Data Science Center      (EPFL and ETH Zurich））, Xiaowen Dong (University of Oxford）</em></li>
-<li><strong>Unbiased Gradient Estimation in Unrolled      Computation Graphs with Persistent Evolution Strategies</strong> <em>Paul Vicol      (University of Toronto）, Luke Metz (Google Brain）, Jascha      Sohl-Dickstein (Google Brain）</em></li>
-<li><strong>Controlling Graph Dynamics with      Reinforcement Learning and Graph Neural Networks</strong> <em>Eli Meirom (NVIDIA      Research）, Haggai Maron (NVIDIA Research）, Shie Mannor (Technion）, Gal      Chechik (NVIDIA / Bar-Ilan University）</em></li>
-<li><strong>Stochastic Iterative Graph Matching</strong> <em>Linfeng Liu (Tufts      University）, Michael C. Hughes (Harvard University）, Soha Hassoun (）,      Liping Liu (Tufts University）</em></li>
-<li><strong>Improving Breadth-Wise Backpropagation in      Graph Neural Networks helps Learning Long-Range Dependencies.</strong> <em>Denis Lukovnikov      (University of Bonn）, Asja Fischer (Ruhr University Bochum）</em></li>
-<li><strong>DeepWalking Backwards: From Embeddings Back      to Graphs</strong> <em>Sudhanshu      Chanpuriya (University of Massachusetts Amherst）, Cameron Musco      (University of Massachusetts Amherst）, Konstantinos Sotiropoulos (Boston      University）, Charalampos Tsourakakis (ISI Foundation, Boston University）</em></li>
-<li><strong>Expressive 1-Lipschitz Neural Networks for      Robust Multiple Graph Learning against Adversarial Attacks</strong> <em>Xin Zhao (Auburn      University）, Zeru Zhang (Auburn University）, Zijie Zhang (Auburn      University）, Lingfei Wu (IBM Research AI）, Jiayin Jin (Auburn      University）, Yang Zhou (Auburn University）, Ruoming Jin (Kent State      University）, Dejing Dou (&quot; University of Oregon, USA&quot;）, Da      Yan (University of Alabama at Birmingham）</em></li>
-<li><strong>Context-Aware Online Collective Inference      for Templated Graphical Models</strong> <em>Charles Dickens (UCSC）, Connor F Pryor      (UCSC）, Eriq Augustine (University of California, Santa Cruz）,      Alexander Miller (UCSC）, Lise Getoor (University of California Santa      Cruz）</em></li>
-<li><strong>Integrated Defense for Resilient Graph      Matching</strong> <em>Jiaxiang      Ren (Auburn University）, Zijie Zhang (Auburn University）, Jiayin Jin      (Auburn University）, Xin Zhao (Auburn University）, Sixing Wu (Peking      University）, Yang Zhou (Auburn University）, Yelong Shen (Microsoft      Dynamics 365 AI）, Tianshi Che (Auburn University）, Ruoming Jin (Kent      State University）, Dejing Dou (&quot; University of Oregon, USA&quot;）</em></li>
-<li><strong>Elastic Graph Neural Networks</strong> <em>Xiaorui Liu      (Michigan State University）, Wei Jin (Michigan State University）, Yao      Ma (Michigan State University）, Yaxin Li (Michigan State University）,      Hua Liu (Shandong University ）, Yiqi Wang (Michigan State University）,      Ming Yan (Michigan State University）, Jiliang Tang (Michigan State      University）</em></li>
-<li><strong>Z-GCNETs: Time Zigzags at Graph      Convolutional Networks for Time Series Forecasting</strong> <em>Yuzhou Chen      (Southern Methodist University）, Ignacio Segovia (University of Texas at      Dallas）, Yulia R Gel (University of Texas at Dallas）</em></li>
-<li><strong>Hierarchical Agglomerative Graph Clustering      in Nearly Linear Time</strong> <em>Laxman Dhulipala (MIT CSAIL）, David Eisenstat (Google）,      Jakub Łącki (Google）, Vahab Mirrokni (Google Research）, Jessica Shi      (MIT）</em></li>
-<li><strong>Size-Invariant Graph Representations for      Graph Classification Extrapolations</strong> <em>Beatrice Bevilacqua (Purdue University）,      Yangze Zhou (Purdue University）, Bruno Ribeiro (Purdue University）</em></li>
-<li><strong>Scalable Optimal Transport in High      Dimensions for Graph Distances, Embedding Alignment, and More</strong> <em>Johannes Klicpera      (Technical University Munich）, Marten Lienen (Technical University of      Munich）, Stephan Günnemann (Technical University of Munich）</em></li>
-<li><strong>Graph Neural Networks Inspired by Classical      Iterative Algorithms</strong> <em>Yang Yongyi (Fudan University）, Tang Liu (Fudan University）     , Yangkun Wang (SJTU）, Jinjing Zhou (Amazon）, Quan Gan (Amazon）,      Zhewei Wei (Renmin University of China）, Zheng Zhang (Amazon）, Zengfeng      Huang (Fudan University）, David Wipf (Microsoft Research）</em></li>
+<li>背景介绍：介绍基本电路器件及性能参数</li>
+<li>GNN方法</li>
+<li>实验与效果</li>
+<li>总结与启发</li>
 </ol>
+<h2>一、背景介绍</h2>
+<h3>1.1 谐振器及$s_{21}$参数</h3>
+<p>通常谐振器有三种，环形、棒性和方形，一个滤波器可由多个谐振器组合而成，并有一个输入和输出端口，输入信号通过输入端口后，其中特定频段的信号被放大输出，其他频率的就被阻挡或者反射，谐振器的参数包括，通常用$s_{21}$系数来进行性能评估<br>
+<img src="dut.jpeg" width="80%" height="80%"></p>
+<p>如上图所示，对于一个两端口的电子元器件DUT，输出信号a1从端口1进入后，会产生两个信号：1端口的反射信号b1，端口2的输出信号为b2，信号通常为正弦波的形式，b1和b2通常会发生相位变化或者幅度衰减，以调幅为例，b1和a1两个信号幅值的比值$s_{21}$为插入损耗，也就是有多少能量被传输到目的端（端口2），这个值越大越好，理想值是1，并用20*log$s_{21}$转化dB形式，通常为负值，当$s_{21}=\frac{1} {10}$时为-20dB。</p>
+<p>进一步的，针对不同频率 $\omega_{i}$的输入信号，DUT的$s_{21}$可以看作是不同频率下的参数叠加，表示为：$s_{21}(\omega) =  \sum_{i=1}^N \frac {a_i} {j\omega - b_i}$，$\frac {a_i} {j\omega_i - b_i}$表示在频率 $\omega_{i}$ 的输入信号下该器件的性能参数，其中$a_i, b_i$为复数参数，分别表征幅值和相位的变化。</p>
+<h3>1.2 现有的解决方案及其缺不足</h3>
+<p>传统的人工电路设计非常依赖专家的经验，同时花费的时间比较高，随着AI技术的发展，一些深度学习方法也逐渐得到应用，其核心是预测参数$a_i, b_i$。下图所示为深度学习应用于芯片电路设计的流程抽象图，在前向过程中，模型将给定的电路映射为相应的转移函数（$s_{21}$），并通过曲线进行刻画;反向过程中，模型将梯度进行回传，更新模型权重和电路拓扑结构来更好的拟合$s_{21}$。<br>
+<img src="illustration.png" width="90%" height="90%"><br>
+但是，现有的基于深度学习的方法，通常面对不同的基板需要单独设计一个模型，并通过更改其中的参数（谐振器个数、类型、排布等）来进行有监督的训练，学习到面对当前template的模型。另外有些情况下需要再增加一个模型来挑选不同基板下的最佳模型，实用性比较局限；同时，现有的深度学习方法通常只能限定一个参数，未实际解决模型梯度如何反馈到电路设计的变动上。</p>
+<h2>二、GNN方法</h2>
+<h3>2.1 前向过程</h3>
+<h4>1 边的定义和节点特征</h4>
+<p>一个正方向谐振器视为一个节点，其参数包含位置和尺寸，表示为$[x,y,a,\theta]^T$，其中$x、y$为平面坐标，$a$为边长，$\theta$为槽的角位置</p>
+<p>谐振器i，j之间的边属性定义为$[\theta_{i},\theta_{j}, x_i-x_j, y_i-y_j, g_{ij}, s_{ij}]$，其中$x_i-x_j,y_i-y_j$为相对偏移位置，$g_{ij}, s_{ij}$表示间隔gap的长度和偏移，节点和边的定义可以参见下图：</p>
+<img src="node.png" width="90%" height="90%">
+<p>同时考虑到电磁耦合会随着距离筛检，对距离设置了阈值。</p>
+<h4>2. GNN endoding</h4>
+<p>有了节点和边的定义以及属性后，一个template下所有的谐振器就构成了一张图，那么就可以使用GNN方法进行图表示学习。在每一层GNN中，节点和边的特征更新步骤如下：</p>
+<ul>
+<li>
+<p>更新边的特征<br>
+第$t$层网络中$i, j$节点的特征更新依赖于 $t-1$ 层当前边的特征$e_{ij}$以及边上的两个节点特征，并通过$f_e^t$（MLP）进行映射,具体为</p>
+<p>$$e_{ij}^t = f_e^t (\eta_i^{t-1}, \eta_j^{t-1}, e_{ij}^{t-1})$$</p>
+</li>
+<li>
+<p>更新节点的特征<br>
+第$t$层网络中 $i$ 节点的特征更新依赖于 $t-1$ 层当前节点的特征$ \eta^{t-1}_i$ 以及所有的关联边特征，并通过$f_n^t$（MLP）进行映射,具体为</p>
+<p>$$\eta_{i}^{t} = f_n^{t} (\eta_i^{t-1},\sum_j e_{ij}^{t})$$</p>
+</li>
+</ul>
+<h4>3. 图池化</h4>
+<p>通常GNN应用于graph-level任务时，最后的池化操作时将图中所有节点的嵌入特征进行池化作为整体的特征，而本文中仅仅使用了电路中与输入、输出端口连接的两个谐振器节点的特征，通过拼接作为最终的全局表示。</p>
+<h4>4. 预测</h4>
+<p>在图表示之后使用MLP进行预测，表示进行直接进行预测，输出的为多个采样频率的复数形式$s_{21}$参数，假设采样m个频率，那么$\hat{y}\triangleq[S_{21}(\omega_1),…, s_{21}(\omega_m)]^T$,其中$\omega_i $表示从频率带宽$\Omega \triangleq [\omega_{min}, \omega_{max}]中的采样$。在训练的时候，Loss定义为：</p>
+<p>$$<br>
+\mathcal{L}(\theta) = \mathbb{E}_{r,y \sim D} ||\real {(\hat {y} (r;\theta)} - \real(y))||_1 + || \image (\hat {y} (r;\theta) - \image(y))||_1<br>
+$$<br>
+其中，$r \in \Reals ^{N \times 4} $为芯片参数，$\theta$为模型参数，最小误差包含复数参数中实数和虚数两部分，$D$为训练数据集。</p>
+<p>如下图所示，整个过程可概括为四步：</p>
+<ol>
+<li>构图</li>
+<li>GNN学习</li>
+<li>特征抽取为全局表示</li>
+<li>预测</li>
+</ol>
+<img src="gnn.png" width="100%" height="100%">
+<h3>2.2 反向优化</h3>
+<h4>loss设计对带通滤波器的loss函数改造</h4>
+<p>对于带通滤波器，要求特定频率范围内的信号才能通过，那么可以将该频率的标签设置为$y_i = 1$，非该频率的设置为0，则优化目标为二分类，相应的目标函数为：<br>
+$$<br>
+\mathcal{J} = \sum\limits_{i:\omega_i \in \Omega^\star}(|\hat {y_i}| - 1)^2 + \sum\limits_{i:\omega_i \notin \Omega^\star}|\hat y_i|^2<br>
+$$</p>
+<h4>梯度如何反馈到布局的改变</h4>
+<p>反向迭代时，第$i$谐振器每次随机选择一个方向$d_i \in {(-1, 0), (1, 0), (0, -1), (0, 1)}$进行移动，当方向确定后，预先计算出该谐振器在该方向上能够移动的最大距离$m_i$，那么，当前谐振器下一次移动方式定义为：<br>
+$$<br>
+p_i = p_i^{\star} + \sigma(q_i)m_{i}d_i<br>
+$$<br>
+其中$p_i^{\star}$为节点的当前坐标为止，$q_i$为学习参数，$\sigma(q_i)$为偏移比例。下图为每个谐振器选定方向后的最大移动距离示意图：</p>
+<img src="move.png" width="90%" height="80%">
+<h2>三、实验与效果</h2>
+<h3>3.1 数据集</h3>
+<p>本文使用方形谐振器，并分别使用了谐振器数量为3、4、5、6的电路template进行学习，并用商业套件CST STUDIO SUIT生成标签，模型评估指标为$s_{21}$的幅值平均绝对误差:<br>
+$$<br>
+\epsilon_{db}(\hat y, y) \triangleq \frac {1} {m} \sum\limits_{i=1}^{m}|20log(|y_i|) - 20log(|\hat y_i|)|<br>
+$$</p>
+<h3>3.2 训练</h3>
+<p>总共100000个数据样本，训练集为80%的4、5模板样本，其他全部为测试集，模型表现如下：<br>
+<img src="dataset.png" width="90%" height="90%"><br>
+时间性能上，在1080Ti的nvidia显卡上，GNN模型单次预测50ms，比商业套件CST STUDIO SUIT快4个数量级。同时，文中也展示了一些good和bad cases，如下图所示（其中虚线为groud truth， 虚线为GNN模型）：<br>
+<img src="good.png" width="90%" height="90%"><br>
+<img src="bad.png" width="90%" height="90%"></p>
+<h3>3.3 性能评估</h3>
+<h4>与人类专家对比</h4>
+<img src="bandpass.png" width="90%" height="90%">
+上图中有三个带通滤波器，－6dB为通频带（大于－6dB的频率都可以通过），可以看到专家设计和GNN模型都达到了标准，细心点会发现，GNN模型的曲线峰值离0更近，即损失更小。
+<h4>与商业软件对比</h4>
+<p>给定带宽滤波器设计参数，其带宽和中心频率分别从[20, 40]GHz 和[235, 315]GHz进行采样得到，对商业软件CST和GNN模型的输出。为了衡量模型针对带宽滤波器的设计能力，引入两个指标：<br>
+<strong>Pass-band IOU</strong>: 衡量滤波电路的带宽与目标带宽的相近程度，具体为两个带宽中频率的交集数量除以并数量集，类似于Jaccard相似度，越大越好<br>
+<strong>Insertion Loss</strong>：$s_{21}$峰值的绝对值，越小越好<br>
+针对每个设计目标，CST从450个仿真中挑一个最好的，GNN从10个候选中挑一个最好的，总共采样了60个设计任务，最终评估CDF曲线如下图所示，可以看到在两项指标上GNN都好与CST，去CDF=0.5得到均值指标，GNN的通频带IOU为0.80优于CST的0.73， GNN的insertion loss为4.13dB优于CST的4.92dB。<br>
+<img src="cdf.png" width="90%" height="90%"></p>
+<h2>四、总结与启发</h2>
+<ul>
+<li>本文第一个基于深度学习解决了面向多种template进行芯片设计的问题</li>
+<li>本文第一个基于深度学习解决了芯片设计的反向问题：即给定电路的电磁（滤波频率）特性，通过深度学习的梯度回传来优化模型参数，反向进行芯片设计</li>
+<li>本文介绍了一种将图模型的梯度回传与布局设计耦合的方法，可以应用到其他涉及到节点具有几何或空间意义的图模型场景中</li>
+<li>本文使用了输入和输出端口直连的谐振器嵌入特征来表征全图，而不是将图中所有节点的嵌入特征进行聚合这种通常做法，经验上对其他类似场景具有指导意义，例如两个蛋白分子交互作用时，可能只有部分特殊状态的原子才能够成键，因此可以将这些代表性的特定原子的嵌入特征拼接来表示整个蛋白质分子，而不是对所有原子进行聚合。</li>
+</ul>
 
             </div>
             <hr />
@@ -582,9 +602,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《ICML-2021图相关论文汇总》
+                    《图神经网络在分布电路设计中的应用》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/06/04/icml-2021-graph/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/08/15/gnn-circuit-design/" property="cc:attributionName"
                rel="cc:attributionURL">
                 Wencai
             </a> 采用
@@ -625,7 +645,7 @@
         repo: 'caowencai.github.io',
         owner: 'caowencai',
         admin: "caowencai",
-        id: '2021/06/04/icml-2021-graph/',
+        id: '2021/08/15/gnn-circuit-design/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -646,9 +666,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/08/15/gnn-circuit-design/">
                     <div class="card-image">
@@ -666,9 +687,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-08-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-08-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -689,6 +710,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -715,35 +737,35 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/11/07/ai-for-stock-prediction/">
+                <a href="/2021/06/04/icml-2021-graph/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="应用当前AI最先进技术预测股票走势【翻译】">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="ICML-2021图相关论文汇总">
                         
-                        <span class="card-title">应用当前AI最先进技术预测股票走势【翻译】</span>
+                        <span class="card-title">ICML-2021图相关论文汇总</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            这是从medium上看到的一篇基于GAN网络并结合了当前各种牛逼AI技术进行股价趋势预测的神文。
+                            汇总了59篇，恐有遗漏
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-07
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-06-04
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/AI/" class="post-category" target="_blank">
-                                    AI
+                            <a href="/categories/paper/" class="post-category" target="_blank">
+                                    paper
                                 </a>
                             
-                            <a href="/categories/AI/model/" class="post-category" target="_blank">
-                                    model
+                            <a href="/categories/paper/graph/" class="post-category" target="_blank">
+                                    graph
                                 </a>
                             
                             
@@ -753,16 +775,16 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/股票/" target="_blank">
-                        <span class="chip tag-bg-color">股票</span>
+                    <a href="/tags/graph/" target="_blank">
+                        <span class="chip tag-bg-color">graph</span>
                     </a>
                     
-                    <a href="/tags/GAN/" target="_blank">
-                        <span class="chip tag-bg-color">GAN</span>
+                    <a href="/tags/icml/" target="_blank">
+                        <span class="chip tag-bg-color">icml</span>
                     </a>
                     
-                    <a href="/tags/强化学习/" target="_blank">
-                        <span class="chip tag-bg-color">强化学习</span>
+                    <a href="/tags/paper/" target="_blank">
+                        <span class="chip tag-bg-color">paper</span>
                     </a>
                     
                 </div>

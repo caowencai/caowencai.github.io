@@ -298,21 +298,21 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                     <div class="post-statis col l4 hide-on-med-and-down" data-aos="zoom-in-right">
                         
 <div class="statis">
-    <span class="count"><a href="/" target="_blank">4</a></span>
+    <span class="count"><a href="/" target="_blank">5</a></span>
     <span class="name">文章</span>
 </div>
 
 
 
 <div class="statis">
-    <span class="count"><a href="/categories" target="_blank">8</a></span>
+    <span class="count"><a href="/categories" target="_blank">9</a></span>
     <span class="name">分类</span>
 </div>
 
 
 
 <div class="statis">
-    <span class="count"><a href="/tags" target="_blank">11</a></span>
+    <span class="count"><a href="/tags" target="_blank">13</a></span>
     <span class="name">标签</span>
 </div>
 
@@ -327,21 +327,21 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                                 <div class="post-statis hide-on-large-only" data-aos="zoom-in-right">
                                     
 <div class="statis">
-    <span class="count"><a href="/" target="_blank">4</a></span>
+    <span class="count"><a href="/" target="_blank">5</a></span>
     <span class="name">文章</span>
 </div>
 
 
 
 <div class="statis">
-    <span class="count"><a href="/categories" target="_blank">8</a></span>
+    <span class="count"><a href="/categories" target="_blank">9</a></span>
     <span class="name">分类</span>
 </div>
 
 
 
 <div class="statis">
-    <span class="count"><a href="/tags" target="_blank">11</a></span>
+    <span class="count"><a href="/tags" target="_blank">13</a></span>
     <span class="name">标签</span>
 </div>
 
@@ -464,7 +464,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
         },
         xAxis: {
             type: 'category',
-            data: ["2020-06","2020-07","2020-08","2020-09","2020-10","2020-11","2020-12","2021-01","2021-02","2021-03","2021-04","2021-05","2021-06"]
+            data: ["2020-08","2020-09","2020-10","2020-11","2020-12","2021-01","2021-02","2021-03","2021-04","2021-05","2021-06","2021-07","2021-08"]
         },
         yAxis: {
             type: 'value',
@@ -474,7 +474,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 name: '文章篇数',
                 type: 'line',
                 color: ['#6772e5'],
-                data: [0,0,0,0,0,0,0,0,0,0,0,0,1],
+                data: [0,0,0,0,0,0,0,0,0,0,1,0,1],
                 markPoint: {
                     symbolSize: 45,
                     color: ['#fa755a','#3ecf8e','#82d3f4'],
@@ -516,7 +516,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 type: 'pie',
                 radius: '50%',
                 color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [{"name":"paper","value":1},{"name":"stock","value":1},{"name":"graph","value":1},{"name":"finance","value":1},{"name":"AI","value":1},{"name":"model","value":1},{"name":"model","value":1},{"name":"AI","value":1}],
+                data: [{"name":"paper","value":2},{"name":"graph","value":2},{"name":"gnn","value":1},{"name":"stock","value":1},{"name":"finance","value":1},{"name":"AI","value":1},{"name":"model","value":1},{"name":"model","value":1},{"name":"AI","value":1}],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -540,7 +540,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
         xAxis: [
             {
                 type: 'category',
-                data: ["股票","icml","graph","三安","国星","paper","GAN","强化学习","腾讯广告","竞赛"]
+                data: ["graph","股票","国星","icml","paper","三安","gnn","circuit","GAN","强化学习"]
             }
         ],
         yAxis: [
@@ -553,7 +553,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 type: 'bar',
                 color: ['#82d3f4'],
                 barWidth : 18,
-                data: [2,1,1,1,1,1,1,1,1,1],
+                data: [2,2,1,1,1,1,1,1,1,1],
                 markPoint: {
                     symbolSize: 45,
                     data: [{
@@ -648,6 +648,24 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
         <div class="tag-chips center-align">
             
             
+            <a href="/tags/circuit/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">circuit</span>
+            </a>
+            
+            
+            
+            <a href="/tags/gnn/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">gnn</span>
+            </a>
+            
+            
+            
+            <a href="/tags/graph/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">graph</span>
+            </a>
+            
+            
+            
             <a href="/tags/icml/" target="_blank">
                 <span class="chip center-align waves-effect waves-light chip-default">icml</span>
             </a>
@@ -656,12 +674,6 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             <a href="/tags/paper/" target="_blank">
                 <span class="chip center-align waves-effect waves-light chip-default">paper</span>
-            </a>
-            
-            
-            
-            <a href="/tags/graph/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">graph</span>
             </a>
             
             
@@ -763,7 +775,7 @@ huai_er</li>
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">22.7k</span>
+            <span class="white-color">25.8k</span>
             
 
             <br>
